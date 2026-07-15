@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200">
+  <title>ADVANTAGE· — Logo oficial</title>
+  <desc>Logo oficial de ADVANTAGE. Wordmark en Inter Bold sobre fondo Void, símbolo cuadrado Ember con A en negativo, punto · en Ember.</desc>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&amp;family=JetBrains+Mono&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="560" height="200" fill="#09090F"/>
+
+  <!-- Símbolo cuadrado Ember -->
+  <rect x="24" y="52" width="72" height="72" fill="#E8541E" rx="4"/>
+  <text x="60" y="101" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="40" fill="#09090F" text-anchor="middle">A</text>
+
+  <!-- Wordmark -->
+  <text x="116" y="101" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="46" fill="#F5EEE3" letter-spacing="-1">ADVANTAGE</text>
+  <!-- Punto Ember -->
+  <text x="490" y="101" font-family="Inter, system-ui, sans-serif" font-weight="700" font-size="46" fill="#E8541E">·</text>
+
+  <!-- Línea separadora -->
+  <line x1="116" y1="114" x2="530" y2="114" stroke="#22201A" stroke-width="1"/>
+
+  <!-- Tagline -->
+  <text x="116" y="132" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="11" fill="#5E5B50" letter-spacing="2">marketing · estrategia · ia</text>
+</svg>

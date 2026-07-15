@@ -1,0 +1,5 @@
+# Netlify — bloquear rutas internas del repo que no son parte del sitio público.
+# docs/web-spec/ contiene specs internos (decisiones de pricing, notas de equipo)
+# que no deben servirse en producción. En GitHub Pages este archivo se ignora:
+# ahí la mitigación pendiente es mover los specs fuera del repo publicado.
+/docs/*  /  404
