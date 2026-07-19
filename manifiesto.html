@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADvantage · Manifiesto</title>
+<meta name="description" content="No elegimos entre ser creativos o analíticos. Esa es precisamente la ventaja.">
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Chrome compartido del sitio (tokens, nav, footer, botones, tipografía) -->
+<link rel="stylesheet" href="assets/css/shared.css">
+
+<style>
+/* ============================
+   Manifiesto — modo Contraste Cream
+   (Manual: Cream para "bandas editoriales · citas" — este es ese caso de uso.
+   Nota de layout en docs/web-spec/ADvantage_mensaje_manifiesto_v1.md)
+============================ */
+body {
+  background: var(--cream);
+  color: var(--void);
+}
+::selection { background: var(--ember); color: var(--cream); }
+
+.manifiesto {
+  /* 64px de nav fijo + respiro editorial */
+  padding-top: calc(64px + var(--sp-4xl));
+  padding-bottom: var(--sp-4xl);
+}
+.manifiesto .label { color: var(--dim); }
+.manifiesto h2 {
+  color: var(--void);
+  margin-bottom: var(--sp-2xl);
+}
+
+/* Columna de lectura — texto para leer con calma, no párrafo de conversión */
+.manifiesto-body { max-width: 660px; }
+.manifiesto-body p {
+  color: var(--void);
+  font-size: 19px;
+  line-height: 1.7; /* 170% */
+  max-width: none;
+}
+.manifiesto-body p + p { margin-top: var(--sp-lg); }
+.manifiesto-body .cierre-frase {
+  font-weight: 600;
+  margin-top: var(--sp-xl);
+}
+
+/* Principios — lista numerada, mono para el número (spec) */
+.principios-label {
+  margin-top: var(--sp-3xl);
+  margin-bottom: var(--sp-lg);
+}
+.principios {
+  list-style: none;
+  max-width: 660px;
+}
+.principios li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--sp-md);
+  padding: var(--sp-lg) 0;
+  border-top: 1px solid rgba(9, 9, 15, 0.12); /* Void a baja opacidad — divisor sobre Cream */
+}
+.principios li:last-child {
+  border-bottom: 1px solid rgba(9, 9, 15, 0.12);
+}
+.principios .num {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ember);
+  line-height: 2.1; /* alinea óptico con la primera línea del texto */
+}
+.principios p {
+  color: var(--dim);
+  font-size: 17px;
+  max-width: none;
+}
+.principios p strong {
+  color: var(--void);
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <a href="index.html" class="nav-logo" aria-label="ADvantage inicio">ADVANTAGE<span class="dot">·</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="index.html#sistema">El sistema</a></li>
+    <li><a href="index.html#equipo">Equipo</a></li>
+    <li><a href="index.html#precio">Precio</a></li>
+    <li><a href="manifiesto.html" aria-current="page">Manifiesto</a></li>
+    <li><a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="nav-cta">Agenda tu diagnóstico →</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Navegación móvil">
+  <a href="index.html#sistema">El sistema</a>
+  <a href="index.html#equipo">Equipo</a>
+  <a href="index.html#precio">Precio</a>
+  <a href="manifiesto.html" aria-current="page">Manifiesto</a>
+  <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="mobile-cta">Agenda tu diagnóstico →</a>
+</div>
+
+<!-- Manifiesto — banda editorial Cream -->
+<main class="manifiesto">
+  <div class="wrap">
+    <span class="label" data-anim="hero">Manifiesto</span>
+    <h2 data-anim="hero">¿Por qué existe ADVANTAGE?</h2>
+
+    <div class="manifiesto-body">
+      <p data-anim="parrafo">No elegimos entre ser creativos o analíticos. Esa es precisamente la ventaja.</p>
+      <p data-anim="parrafo">La mayoría de las agencias te vende intuición disfrazada de estrategia. Toman decisiones basadas en lo que funcionó para otro cliente, en otro momento, con otro presupuesto.</p>
+      <p data-anim="parrafo">Nosotros operamos distinto. Cada servicio que ofrecemos corre sobre un sistema de workflows documentados — auditables, mejorables, sin cajas negras. No dependes de que una persona tenga un buen día. El sistema siempre entrega.</p>
+      <p data-anim="parrafo">Pero un sistema sin alma produce contenido que no conecta, anuncios que se ignoran, y páginas que nadie recuerda. Por eso combinamos rigor técnico con visión creativa. No como un compromiso entre dos fuerzas opuestas — como la única forma de hacer marketing que funciona.</p>
+      <p class="cierre-frase" data-anim="parrafo">Eso es ADVANTAGE.</p>
+    </div>
+
+    <span class="label principios-label" data-anim="parrafo">Principios de la agencia</span>
+    <ol class="principios">
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">01</span>
+        <p><strong>El sistema es el producto.</strong> No lo que hacemos, sino cómo lo hacemos.</p>
+      </li>
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">02</span>
+        <p><strong>Cada falla hace el sistema más fuerte.</strong> Documentamos, aprendemos, actualizamos.</p>
+      </li>
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">03</span>
+        <p><strong>Sin datos no hay opinión.</strong> Pero los datos sin narrativa son ruido.</p>
+      </li>
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">04</span>
+        <p><strong>Los entregables viven en la nube del cliente.</strong> Nunca en carpetas que nadie puede auditar.</p>
+      </li>
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">05</span>
+        <p><strong>La transparencia no es un valor — es el modelo.</strong> El cliente puede ver cada workflow.</p>
+      </li>
+    </ol>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-logo">ADVANTAGE<span class="dot">·</span></span>
+    <span class="foot-meta">Bogotá · Colombia</span>
+    <span class="foot-meta"><a href="index.html">Inicio</a> · © 2026 ADvantage</span>
+  </div>
+</footer>
+
+<!-- GSAP 3.12.5 — vendoreado en el repo (sin CDN de terceros en runtime) -->
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
