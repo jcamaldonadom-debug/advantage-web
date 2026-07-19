@@ -215,6 +215,33 @@ p strong { color: var(--cream); font-weight: 500; }
 .btn-void:hover { background: var(--ink); transform: translateY(-2px); }
 
 /* ============================
+   Bloque Entrega — "Entrega:" / "Qué te llevas:" (keyword mono + borde ember)
+============================ */
+.entrega {
+  margin-top: var(--sp-lg);
+  padding: var(--sp-md);
+  background: var(--ink);
+  border-left: 2px solid var(--ember);
+  border-radius: 0 8px 8px 0;
+  max-width: 680px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.entrega .entrega-k {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ember);
+  margin-right: var(--sp-sm);
+}
+
+/* Badge Prerequisito — marca la card de Research (Sistema WAT y Servicios) */
+.badge-prerequisito {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--void); background: var(--ember);
+  border-radius: 100px; padding: 2px 10px;
+}
+
+/* ============================
    Cierre — Bloque Ember (fondo sólido), CTA de máximo impacto
 ============================ */
 .cierre {
