@@ -215,6 +215,21 @@ p strong { color: var(--cream); font-weight: 500; }
 .btn-void:hover { background: var(--ink); transform: translateY(-2px); }
 
 /* ============================
+   Cierre — Bloque Ember (fondo sólido), CTA de máximo impacto
+============================ */
+.cierre {
+  background: var(--ember);
+  margin-top: var(--sp-4xl);
+  padding-top: var(--sp-4xl); padding-bottom: var(--sp-4xl);
+}
+.cierre .wrap { text-align: center; }
+.cierre h2 {
+  font-size: clamp(40px, 6vw, 72px);
+  color: var(--void);
+  margin-bottom: var(--sp-2xl);
+}
+
+/* ============================
    Footer — banda Void en todas las páginas
 ============================ */
 footer {
