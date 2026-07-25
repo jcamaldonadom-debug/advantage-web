@@ -37,23 +37,8 @@
   will-change: transform;
 }
 .hero-inner { position: relative; z-index: 1; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: var(--sp-sm);
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
-  color: var(--dim);
-  border: 1px solid var(--border); border-radius: 100px;
-  padding: 6px 14px;
-  margin-bottom: var(--sp-xl);
-}
-.hero-badge .pulse {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--ember);
-  animation: pulse 2.4s ease-in-out infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232,84,30,0.5); }
-  50%      { opacity: 0.6; box-shadow: 0 0 0 5px rgba(232,84,30,0); }
-}
+/* Componente .pill → shared.css */
+.hero-badge { margin-bottom: var(--sp-xl); }
 .hero .display { margin-bottom: var(--sp-md); }
 .hero h1 { max-width: 880px; margin-bottom: var(--sp-lg); }
 .hero-sub {
@@ -142,43 +127,7 @@
   align-items: start;
   margin-top: var(--sp-2xl);
 }
-.equipo-card {
-  background: var(--cream); /* fondo Cream de la card detrás de la foto (spec) */
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: background 0.2s ease, border-color 0.2s ease; /* misma regla de cards que módulos WAT */
-}
-.equipo-card:hover { border-color: var(--ember); }
-.equipo-foto {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  background: var(--cream);
-  display: flex; align-items: center; justify-content: center;
-}
-.equipo-foto .placeholder-iniciales {
-  font-family: var(--serif); font-style: italic; font-weight: 500;
-  font-size: 96px; color: var(--ember);
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.equipo-foto img {
-  position: relative; z-index: 1;
-  width: 100%; height: 100%;
-  object-fit: cover; object-position: center top;
-  display: block;
-}
-.equipo-card-info {
-  padding: var(--sp-md) var(--sp-lg);
-  background: var(--ink);
-  border-top: 1px solid var(--border);
-}
-.equipo-card-info .nombre { font-weight: 600; font-size: 16px; color: var(--cream); }
-.equipo-card-info .rol {
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ember);
-  display: block; margin-top: var(--sp-xs);
-}
+/* Card de persona (.equipo-card / .equipo-foto / .equipo-card-info) → shared.css */
 .equipo-bio p + p { margin-top: var(--sp-lg); }
 .equipo-bio .como-se-arma {
   margin-top: var(--sp-xl);
@@ -206,7 +155,7 @@
   <ul class="nav-links" role="list">
     <li><a href="sistema-wat.html">El sistema</a></li>
     <li><a href="servicios.html">Servicios</a></li>
-    <li><a href="#equipo">Equipo</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
     <li><a href="#precio">Precio</a></li>
     <li><a href="manifiesto.html">Manifiesto</a></li>
     <li><a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="nav-cta">Agenda tu diagnóstico →</a></li>
@@ -218,7 +167,7 @@
 <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Navegación móvil">
   <a href="sistema-wat.html">El sistema</a>
   <a href="servicios.html">Servicios</a>
-  <a href="#equipo">Equipo</a>
+  <a href="nosotros.html">Nosotros</a>
   <a href="#precio">Precio</a>
   <a href="manifiesto.html">Manifiesto</a>
   <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="mobile-cta">Agenda tu diagnóstico →</a>
@@ -228,7 +177,7 @@
 <section class="hero" id="hero" aria-labelledby="hero-heading">
   <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
   <div class="wrap hero-inner">
-    <div class="hero-badge" data-anim="hero">
+    <div class="pill hero-badge" data-anim="hero">
       <span class="pulse" aria-hidden="true"></span>
       wat_system · activo
     </div>
