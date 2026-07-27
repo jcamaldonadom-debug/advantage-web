@@ -66,83 +66,135 @@
 }
 
 /* ============================
-   Venn — dos co-fundadores, terreno compartido en el centro
-   (no jerarquía: dos círculos a la par, no un mapa radial)
+   Mapa del equipo — tres columnas con nodos y conectores.
+   Sin geometría de superposición: solo tokens de spacing.
+   Spec sección 3 (diagrama obligatorio).
 ============================ */
-.venn {
-  position: relative;
-  height: 480px;
-  max-width: 900px;
-  margin: var(--sp-2xl) auto 0;
+.equipo-mapa {
+  padding-top: var(--sp-3xl);
+  padding-bottom: var(--sp-3xl);
 }
-.venn-lado {
-  position: absolute; top: 50%;
-  width: 420px; height: 420px;
-  margin-top: -210px;
-  border-radius: 50%;
-  border: 1px solid rgba(232, 84, 30, 0.20);
-  background: rgba(232, 84, 30, 0.04);
+.mapa-columnas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-xl);
+  align-items: start;
+}
+.mapa-col {
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: var(--sp-sm);
-  padding: var(--sp-lg);
-  will-change: transform;
+  align-items: center;
 }
-/* El padding lateral mantiene las pills de cada lado fuera de la lente central */
-.venn-izq { left: calc(50% - 420px + 90px); padding-right: 190px; }
-.venn-der { left: calc(50% - 90px); padding-left: 190px; }
-.venn-lado .venn-nombre {
+.mapa-col-titulo {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--ember);
-  margin-bottom: var(--sp-xs);
-}
-.venn-centro {
-  position: absolute; z-index: 2;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  width: 180px; /* = ancho de la lente, para que nada se salga del terreno compartido */
-  display: flex; flex-direction: column;
-  align-items: center; gap: var(--sp-sm);
-  padding: var(--sp-md) var(--sp-sm);
-  border-radius: 100px;
-  background: rgba(232, 84, 30, 0.10);
-}
-.venn-centro .venn-nombre {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--dim);
-}
-.venn .pill {
-  background: var(--ink);
-  color: var(--muted);
-  font-size: 10px; letter-spacing: 0.08em;
-  padding: 5px 12px;
+  margin-bottom: var(--sp-sm);
   text-align: center;
-  transition: border-color 0.2s ease, color 0.2s ease;
 }
-.venn .pill:hover { border-color: var(--ember); color: var(--cream); }
-.venn-centro .pill { border-radius: 12px; }
+.mapa-col-rol {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--dim);
+  margin-bottom: var(--sp-md);
+}
+/* Retrato compacto de la persona, mismo peso en las dos columnas laterales */
+.mapa-retrato {
+  width: 88px; height: 88px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--cream);
+  position: relative;
+  border: 1px solid var(--border);
+  margin-bottom: var(--sp-md);
+}
+.mapa-retrato img {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.mapa-retrato .badge-iniciales span { width: 56px; height: 56px; font-size: 22px; }
+
+/* Conector entre la card y los nodos, y entre nodos */
+.mapa-conector {
+  width: 1px; height: var(--sp-lg);
+  background: var(--border);
+}
+.mapa-nodos {
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--sp-sm);
+  width: 100%;
+}
+.nodo-tag {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  color: var(--muted);
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  padding: var(--sp-sm) var(--sp-md);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+}
+.nodo-tag:hover,
+.nodo-tag:focus-visible,
+.nodo-tag[aria-expanded="true"] {
+  border-color: var(--ember);
+  color: var(--cream);
+  background: var(--ember-shadow);
+}
+
+/* Columna central — punto de encuentro, no una tercera persona */
+.mapa-col-compartido {
+  background: var(--ink);
+  border: 1px solid var(--ember);
+  border-radius: 12px;
+  padding: var(--sp-lg) var(--sp-md);
+}
+.mapa-col-compartido .mapa-col-titulo { color: var(--ember); }
+
+/* Facilitadores — punteado + opacidad: se activan condicionalmente */
+.mapa-facilitadores {
+  margin-top: var(--sp-xl);
+  padding-top: var(--sp-xl);
+  border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--sp-md);
+}
+.facilitadores-fila {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--sp-sm);
+}
+.facilitadores-fila .nodo-tag {
+  border-style: dashed;
+  opacity: 0.6;
+}
+.facilitadores-fila .nodo-tag:hover,
+.facilitadores-fila .nodo-tag:focus-visible,
+.facilitadores-fila .nodo-tag[aria-expanded="true"] { opacity: 1; }
+.facilitadores-caption {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  color: var(--dim); text-align: center;
+}
+
+/* Tarjeta de contexto — altura reservada, sin layout shift ni overflow */
+.mapa-contexto {
+  margin-top: var(--sp-xl);
+  min-height: 72px;
+  display: flex; align-items: center;
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--ember);
+  border-radius: 0 8px 8px 0;
+  padding: var(--sp-md);
+}
+.mapa-contexto p {
+  font-size: 15px; color: var(--muted); max-width: none;
+  margin: 0;
+}
+.mapa-contexto .contexto-vacio { color: var(--dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
 
 @media (max-width: 860px) {
-  /* Venn en eje vertical — el terreno compartido queda en la zona de solape,
-     entre los dos círculos, igual que en desktop. */
-  .venn {
-    height: auto; max-width: 340px; padding: var(--sp-md) 0;
-    display: flex; flex-direction: column; align-items: center;
-  }
-  .venn-lado {
-    position: static; left: auto; margin: 0;
-    width: 320px; height: 320px;
-    padding: var(--sp-lg);
-  }
-  .venn-izq { order: 1; }
-  .venn-centro {
-    order: 2;
-    position: static; transform: none; z-index: 3;
-    width: 300px;
-    margin: -68px 0;
-    border-radius: 16px;
-  }
-  .venn-der { order: 3; }
+  /* Columnas apiladas: Juan Camilo → Compartido → María Paula → Facilitadores */
+  .mapa-columnas { grid-template-columns: 1fr; gap: var(--sp-xl); }
 }
 
 /* Datos de la empresa */
@@ -237,43 +289,73 @@
 
     <div class="cierre-conjunto" data-anim="reveal">
       <p>Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario. No vendemos años de experiencia — vendemos que el sistema no depende de que uno de los dos tenga un buen día. Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia, los dos hacemos contenido. Juan Camilo trae gobierno de canales corporativos y rigor analítico de servicio al cliente; María Paula trae producción real de contenido con IA y experiencia operando puntos de venta. Se suma, no se reparte.</p>
+      <p>El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa.</p>
     </div>
 
-    <!-- Venn — dos co-fundadores a la par, terreno compartido en el centro -->
-    <div class="venn" id="venn" role="img" aria-label="Diagrama de dos círculos que se superponen. Juan Camilo aporta Samsung, canales corporativos, GDPR y CSAT/DSAT; María Paula aporta Bavaria, producción de contenido con IA, activaciones de marca y punto de venta. En el centro, lo que comparten: estrategia, contenido, y Marketing y Negocios Digitales de la Universidad del Rosario.">
-      <div class="venn-lado venn-izq" data-venn="izq">
-        <span class="venn-nombre">Juan Camilo</span>
-        <span class="pill">Samsung</span>
-        <span class="pill">canales corporativos</span>
-        <span class="pill">GDPR</span>
-        <span class="pill">CSAT/DSAT</span>
+    <!-- Mapa del equipo — tres columnas con nodos; el contexto de cada nodo
+         se muestra en la tarjeta de abajo (hover en desktop, tap en mobile) -->
+    <div class="equipo-mapa" id="equipoMapa" data-anim="reveal">
+      <div class="mapa-columnas">
+        <div class="mapa-col" data-col="juan-camilo">
+          <span class="mapa-col-titulo">Juan Camilo</span>
+          <div class="mapa-retrato">
+            <img src="assets/team/juan-camilo.png" alt="Juan Camilo Maldonado" onerror="this.style.display='none'">
+          </div>
+          <span class="mapa-col-rol">Co-fundador</span>
+          <div class="mapa-conector" aria-hidden="true"></div>
+          <div class="mapa-nodos">
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Gestión de contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales.">Samsung</button>
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales.">GDPR</button>
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Análisis de métricas de satisfacción para clientes internacionales.">CSAT/DSAT</button>
+          </div>
+        </div>
+
+        <div class="mapa-col mapa-col-compartido" data-col="compartido">
+          <span class="mapa-col-titulo">Compartido</span>
+          <span class="mapa-col-rol">El punto de encuentro</span>
+          <div class="mapa-conector" aria-hidden="true"></div>
+          <div class="mapa-nodos">
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia. Se suma, no se reparte.">Estrategia</button>
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Trabajamos en paralelo, no divididos por función: los dos hacemos contenido. Se suma, no se reparte.">Contenido</button>
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario.">Universidad del Rosario</button>
+          </div>
+        </div>
+
+        <div class="mapa-col" data-col="maria-paula">
+          <span class="mapa-col-titulo">María Paula</span>
+          <div class="mapa-retrato">
+            <span class="badge-iniciales" aria-hidden="true"><span>MB</span></span>
+            <img src="assets/team/maria-paula.png" alt="María Paula Bacca" onerror="this.style.display='none'">
+          </div>
+          <span class="mapa-col-rol">Co-fundadora</span>
+          <div class="mapa-conector" aria-hidden="true"></div>
+          <div class="mapa-nodos">
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Prácticas de marketing en Bavaria — Michelob, Pony Malta, Redd's, Cola &amp; Pola.">Bavaria</button>
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Desarrollo de contenido y piezas gráficas para campañas, apoyada en herramientas de IA para producción de contenido.">IA para contenido</button>
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Coordinación de activaciones de marca a nivel nacional.">Activaciones de marca</button>
+            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Administradora de punto de venta en La Fábrica de Batidos: montaje de la experiencia de marca en la apertura de dos locales y entrenamiento del personal nuevo.">Punto de venta</button>
+          </div>
+        </div>
       </div>
-      <div class="venn-lado venn-der" data-venn="der">
-        <span class="venn-nombre">María Paula</span>
-        <span class="pill">Bavaria</span>
-        <span class="pill">producción de contenido con IA</span>
-        <span class="pill">activaciones de marca</span>
-        <span class="pill">punto de venta</span>
+
+      <div class="mapa-facilitadores">
+        <span class="mapa-col-titulo">Facilitadores</span>
+        <div class="facilitadores-fila">
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Filmmaker</button>
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Community</button>
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Diseño</button>
+        </div>
+        <span class="facilitadores-caption">Se activan según diagnóstico, no antes</span>
       </div>
-      <div class="venn-centro" data-venn="centro">
-        <span class="venn-nombre">En común</span>
-        <span class="pill">Estrategia</span>
-        <span class="pill">Contenido</span>
-        <span class="pill">Marketing y Negocios Digitales, Universidad del Rosario</span>
+
+      <div class="mapa-contexto" id="mapaContexto" aria-live="polite">
+        <p class="contexto-vacio">Pasa el cursor o toca un nodo para ver el detalle</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 4 · Cómo se arma el equipo -->
-<section class="seccion-nos" id="como-se-arma" aria-label="Cómo se arma el equipo">
-  <div class="wrap">
-    <span class="label">Cómo se arma el equipo</span>
-    <p class="cuerpo" data-anim="reveal">El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.</p>
-  </div>
-</section>
-
-<!-- 5 · Datos de la empresa -->
+<!-- 4 · Datos de la empresa -->
 <section class="seccion-nos" id="datos" aria-label="Datos de la empresa">
   <div class="wrap">
     <span class="label">Datos de la empresa</span>
@@ -286,7 +368,7 @@
   </div>
 </section>
 
-<!-- 6 · Cómo pensamos -->
+<!-- 5 · Cómo pensamos -->
 <section class="seccion-nos" id="como-pensamos" aria-label="Cómo pensamos">
   <div class="wrap">
     <span class="label">Cómo pensamos</span>
@@ -309,7 +391,7 @@
   </div>
 </section>
 
-<!-- 7 · Cierre — bloque Ember -->
+<!-- 6 · Cierre — bloque Ember -->
 <section class="cierre" id="contacto" aria-labelledby="cierre-heading">
   <div class="wrap" data-anim="rise">
     <h2 id="cierre-heading">Agenda tu diagnóstico.</h2>
@@ -330,22 +412,43 @@
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
-/* Venn — los círculos entran separados y convergen: comunica la relación real
-   (dos personas que convergen), no es decoración. Reglas del manual: entrada
-   Fade + Rise, ScrollTrigger al 80%, ≤3 propiedades, ≤900ms. */
+/* Mapa del equipo — cada nodo muestra su línea de contexto en la tarjeta de abajo.
+   Hover en desktop, tap en mobile y foco por teclado usan la misma ruta de código.
+   La tarjeta tiene altura reservada: no hay layout shift ni overflow. */
 (function () {
   'use strict';
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-  var venn = document.getElementById('venn');
-  if (!venn) return;
+  var mapa = document.getElementById('equipoMapa');
+  var panel = document.getElementById('mapaContexto');
+  if (!mapa || !panel) return;
 
-  var anim = gsap.timeline({ paused: true });
-  anim.from('[data-venn="izq"]', { x: -48, opacity: 0, duration: 0.8, ease: 'power2.out' }, 0)
-      .from('[data-venn="der"]', { x: 48, opacity: 0, duration: 0.8, ease: 'power2.out' }, 0)
-      .from('[data-venn="centro"] > *', { y: 16, opacity: 0, duration: 0.5, ease: 'power2.out', stagger: 0.08 }, 0.45);
+  var nodos = [].slice.call(mapa.querySelectorAll('.nodo-tag'));
+  var vacio = panel.innerHTML;
+  var fijado = null; // nodo elegido con click/tap: el hover no lo pisa
 
-  ScrollTrigger.create({ trigger: venn, start: 'top 80%', onEnter: function () { anim.play(); } });
+  function pintar(nodo) {
+    nodos.forEach(function (n) { n.setAttribute('aria-expanded', String(n === nodo)); });
+    if (nodo) {
+      var p = document.createElement('p');
+      p.textContent = nodo.getAttribute('data-contexto');
+      panel.replaceChildren(p);
+    } else {
+      panel.innerHTML = vacio;
+    }
+  }
+
+  nodos.forEach(function (nodo) {
+    nodo.addEventListener('mouseenter', function () { if (!fijado) pintar(nodo); });
+    nodo.addEventListener('focus', function () { if (!fijado) pintar(nodo); });
+    nodo.addEventListener('click', function () {
+      fijado = (fijado === nodo) ? null : nodo;
+      pintar(fijado);
+    });
+  });
+
+  mapa.addEventListener('mouseleave', function () { pintar(fijado); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && fijado) { fijado = null; pintar(null); }
+  });
 })();
 </script>
 </body>
