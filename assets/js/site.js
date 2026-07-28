@@ -70,12 +70,14 @@
     ScrollTrigger.create({ trigger: grid, start: 'top 80%', onEnter: function () { gridAnim.play(); } });
   }
 
-  // Stat "9 módulos" — CountUp (1.8s, calculado, no instantáneo)
-  var num = document.getElementById('statModulos');
-  if (num) {
+  // Stat "9 módulos" — CountUp (1.8s, calculado, no instantáneo).
+  // Corre en cada [data-countup]: el del log del hero y el stat grande de la
+  // sección Sistema. Para el del hero, que ya está en viewport al cargar, el
+  // trigger dispara de inmediato — no hace falta lógica aparte.
+  gsap.utils.toArray('[data-countup]').forEach(function (num) {
     var countAnim = gsap.from(num, {
       textContent: 0, duration: 1.8, snap: { textContent: 1 }, ease: 'power1.inOut', paused: true
     });
     ScrollTrigger.create({ trigger: num, start: 'top 80%', onEnter: function () { countAnim.play(); } });
-  }
+  });
 })();

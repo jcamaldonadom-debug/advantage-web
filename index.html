@@ -32,13 +32,38 @@
   top: -20%; right: -10%;
   width: 720px; height: 720px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(232,84,30,0.16) 0%, rgba(232,84,30,0.05) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(232,84,30,0.24) 0%, rgba(232,84,30,0.08) 45%, transparent 70%);
   pointer-events: none;
   will-change: transform;
 }
+/* Segunda capa: más chica y tensa, detrás del bloque de texto (que va a la
+   izquierda) — ahí antes no llegaba nada de luz. Estática a propósito: no se
+   anima, así que no lleva will-change ni la toca el parallax de #heroGlow. */
+.hero-glow-2 {
+  position: absolute;
+  top: 30%; left: -6%;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,84,30,0.14) 0%, rgba(232,84,30,0.04) 40%, transparent 68%);
+  pointer-events: none;
+}
 .hero-inner { position: relative; z-index: 1; }
 /* Componente .pill → shared.css */
-.hero-badge { margin-bottom: var(--sp-xl); }
+.hero-badge { margin-bottom: var(--sp-md); }
+
+/* Log de sistema — demuestra el sistema en vez de solo nombrarlo.
+   aria-hidden: el dato ya está en el stat de abajo y en el body; así el lector
+   de pantalla no anuncia los ">" ni los valores intermedios del contador. */
+.hero-log {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+  color: var(--dim);
+  margin-bottom: var(--sp-xl);
+}
+/* Solo los hijos directos son líneas — el <span class="val"> del contador va
+   anidado y tiene que seguir siendo inline. */
+.hero-log > span { display: block; }
+.hero-log > span + span { margin-top: var(--sp-xs); }
+.hero-log .val { color: var(--ember); }
 .hero .display { margin-bottom: var(--sp-md); }
 .hero h1 { max-width: 880px; margin-bottom: var(--sp-lg); }
 .hero-sub {
@@ -176,10 +201,15 @@
 <!-- 1 · Hero -->
 <section class="hero" id="hero" aria-labelledby="hero-heading">
   <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+  <div class="hero-glow-2" aria-hidden="true"></div>
   <div class="wrap hero-inner">
     <div class="pill hero-badge" data-anim="hero">
       <span class="pulse" aria-hidden="true"></span>
       wat_system · activo
+    </div>
+    <div class="hero-log" data-anim="hero" aria-hidden="true">
+      <span>&gt; <span class="val" data-countup>9</span> módulos · cargados</span>
+      <span>&gt; documentados · auditables</span>
     </div>
     <span class="display" data-anim="hero">Sistema y alma.</span>
     <h1 id="hero-heading" data-anim="hero">Marketing con sistema documentado, no con intuición disfrazada de estrategia.</h1>
@@ -210,7 +240,7 @@
         <p>WAT son 9 módulos documentados: onboarding, research, contenido, SEO, pauta, CRO, growth, analítica y ventas. Cada uno corre igual la primera semana que en el mes doce — no depende de que alguien tenga un buen día.</p>
       </div>
       <div class="stat" data-anim="reveal">
-        <span class="stat-val" id="statModulos" aria-label="9 módulos">9</span>
+        <span class="stat-val" id="statModulos" data-countup aria-label="9 módulos">9</span>
         <span class="stat-label">módulos</span>
       </div>
     </div>

@@ -128,7 +128,17 @@ p strong { color: var(--cream); font-weight: 500; }
   font-size: 15px; letter-spacing: 0.02em;
   color: var(--cream); text-decoration: none;
 }
-.nav-logo .dot { color: var(--ember); }
+/* El punto Ember del wordmark parpadea: el manual lo define como "indica el
+   sistema activo, como un cursor... running" — el parpadeo es coherencia con su
+   propio significado. Solo opacidad; color, tamaño y posición no se tocan. */
+.nav-logo .dot {
+  color: var(--ember);
+  animation: blink-dot 1.8s ease-in-out infinite;
+}
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
 .nav-links {
   display: flex; gap: var(--sp-xl); align-items: center;
   list-style: none;
@@ -396,5 +406,6 @@ footer a:hover { color: var(--muted); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .pill .pulse { animation: none; }
+  .nav-logo .dot { animation: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
