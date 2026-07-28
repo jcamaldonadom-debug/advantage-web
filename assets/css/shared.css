@@ -1,0 +1,411 @@
+/* ============================
+   ADvantage — chrome compartido del sitio
+   Tokens: docs/web-spec/ADvantage_BRAND_TOKENS.md (Manual de Marca v1.0, 04-A Ember Oscuro)
+   Extraído de index.html al construir la segunda página (manifiesto.html).
+============================ */
+:root {
+  --void:         #09090F;
+  --ink:          #111118;
+  --ember-shadow: #18160F;
+  --ember:        #E8541E;
+  --ember-hover:  #FF6B35;
+  --cream:        #F5EEE3;
+  --muted:        #A09F98;
+  --dim:          #5E5B50;
+  --border:       #22201A;
+
+  --sans:  'Inter', sans-serif;
+  --serif: 'Fraunces', serif;
+  --mono:  'JetBrains Mono', monospace;
+
+  /* Spacing — base 8px */
+  --sp-xs:  4px;
+  --sp-sm:  8px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 80px;
+  --sp-4xl: 120px;
+
+  --page-px: 56px;
+  --max-w:   1280px;
+}
+@media (max-width: 768px) {
+  :root { --page-px: 24px; }
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.7; /* BODY 170% */
+  overflow-x: hidden;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-left: var(--page-px);
+  padding-right: var(--page-px);
+}
+
+section { padding-top: var(--sp-3xl); padding-bottom: var(--sp-3xl); scroll-margin-top: 64px; }
+section + section { margin-top: var(--sp-4xl); }
+
+::selection { background: var(--ember); color: var(--cream); }
+
+/* ============================
+   Tipografía — escala del manual
+============================ */
+.display {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 1.05;
+  letter-spacing: -0.025em; /* -2.5% */
+  color: var(--ember);
+  display: block;
+}
+h1 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(34px, 4.6vw, 60px);
+  line-height: 1.08;
+  letter-spacing: -0.04em; /* -4% */
+  color: var(--cream);
+}
+h2 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(28px, 3.2vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.02em; /* -2% */
+  color: var(--cream);
+  margin-bottom: var(--sp-lg);
+}
+h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.015em; /* -1.5% */
+  color: var(--cream);
+}
+.label {
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: block;
+  margin-bottom: var(--sp-md);
+}
+p { color: var(--muted); max-width: 640px; }
+p strong { color: var(--cream); font-weight: 500; }
+
+/* ============================
+   Nav
+============================ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 64px;
+  padding: 0 var(--page-px);
+  background: color-mix(in srgb, var(--void) 82%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--sans); font-weight: 700;
+  font-size: 15px; letter-spacing: 0.02em;
+  color: var(--cream); text-decoration: none;
+}
+/* El punto Ember del wordmark parpadea: el manual lo define como "indica el
+   sistema activo, como un cursor... running" — el parpadeo es coherencia con su
+   propio significado. Solo opacidad; color, tamaño y posición no se tocan. */
+.nav-logo .dot {
+  color: var(--ember);
+  animation: blink-dot 1.8s ease-in-out infinite;
+}
+@keyframes blink-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+.nav-links {
+  display: flex; gap: var(--sp-xl); align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 14px; font-weight: 500;
+  transition: color 0.2s ease;
+}
+.nav-links a:hover { color: var(--cream); }
+.nav-links a[aria-current="page"] {
+  color: var(--cream);
+  border-bottom: 1px solid var(--ember);
+  padding-bottom: 2px;
+}
+.nav-links a.nav-cta {
+  color: var(--ember);
+  font-family: var(--mono); font-size: 13px;
+}
+.nav-links a.nav-cta:hover { color: var(--ember-hover); }
+.nav-hamburger {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  width: 40px; height: 40px;
+  flex-direction: column; justify-content: center; align-items: center; gap: 5px;
+}
+.nav-hamburger span {
+  display: block; width: 20px; height: 1.5px;
+  background: var(--cream);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.mobile-nav {
+  position: fixed; inset: 64px 0 auto 0; z-index: 99;
+  background: var(--ink);
+  border-bottom: 1px solid var(--border);
+  display: none; flex-direction: column;
+  padding: var(--sp-lg) var(--page-px);
+  gap: var(--sp-md);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  color: var(--muted); text-decoration: none;
+  font-size: 16px; padding: var(--sp-sm) 0;
+}
+.mobile-nav a[aria-current="page"] { color: var(--cream); }
+.mobile-nav a.mobile-cta { color: var(--ember); font-family: var(--mono); font-size: 14px; }
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+/* ============================
+   Botones
+============================ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: var(--sp-sm);
+  background: var(--ember); color: var(--cream);
+  padding: 16px 28px; border-radius: 8px;
+  font-weight: 600; font-size: 15px; text-decoration: none;
+  box-shadow: 0 4px 32px rgba(232,84,30,0.35);
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--ember-hover);
+  transform: translateY(-2px); /* lift reservado para CTAs */
+  box-shadow: 0 8px 40px rgba(232,84,30,0.35);
+}
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: var(--sp-sm);
+  color: var(--muted); text-decoration: none;
+  font-family: var(--mono); font-size: 13px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.btn-ghost:hover { color: var(--cream); border-color: var(--muted); }
+.btn-void {
+  display: inline-flex; align-items: center; gap: var(--sp-sm);
+  background: var(--void); color: var(--cream);
+  padding: 18px 32px; border-radius: 8px;
+  font-weight: 600; font-size: 16px; text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.btn-void:hover { background: var(--ink); transform: translateY(-2px); }
+
+/* ============================
+   Bloque Entrega — "Entrega:" / "Qué te llevas:" (keyword mono + borde ember)
+============================ */
+.entrega {
+  margin-top: var(--sp-lg);
+  padding: var(--sp-md);
+  background: var(--ink);
+  border-left: 2px solid var(--ember);
+  border-radius: 0 8px 8px 0;
+  max-width: 680px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.entrega .entrega-k {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ember);
+  margin-right: var(--sp-sm);
+}
+
+/* Badge Prerequisito — marca la card de Research (Sistema WAT y Servicios) */
+.badge-prerequisito {
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--void); background: var(--ember);
+  border-radius: 100px; padding: 2px 10px;
+}
+
+/* ============================
+   Pill — componente de tag/estado (hero del home, nodos de diagrama, metadata)
+============================ */
+.pill {
+  display: inline-flex; align-items: center; gap: var(--sp-sm);
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  color: var(--dim);
+  border: 1px solid var(--border); border-radius: 100px;
+  padding: 6px 14px;
+}
+.pill .pulse {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--ember);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232,84,30,0.5); }
+  50%      { opacity: 0.6; box-shadow: 0 0 0 5px rgba(232,84,30,0); }
+}
+
+/* ============================
+   Card de persona — retrato sobre Cream + franja de datos
+============================ */
+.equipo-card {
+  background: var(--cream); /* fondo Cream de la card detrás de la foto (spec) */
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background 0.2s ease, border-color 0.2s ease; /* misma regla de cards que módulos WAT */
+}
+.equipo-card:hover { border-color: var(--ember); }
+.equipo-foto {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+}
+.equipo-foto .placeholder-iniciales {
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: 96px; color: var(--ember);
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.equipo-foto img {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.equipo-card-info {
+  padding: var(--sp-md) var(--sp-lg);
+  background: var(--ink);
+  border-top: 1px solid var(--border);
+}
+.equipo-card-info .nombre { font-weight: 600; font-size: 16px; color: var(--cream); }
+.equipo-card-info .rol {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ember);
+  display: block; margin-top: var(--sp-xs);
+}
+
+/* Badge de iniciales — geometría del logo mark (cuadrado redondeado, Inter 700).
+   Fallback mientras llega la foto real: basta con soltar el PNG en la ruta del <img>. */
+.badge-iniciales {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.badge-iniciales span {
+  display: flex; align-items: center; justify-content: center;
+  width: 96px; height: 96px;
+  background: var(--void);
+  border-radius: 8px;
+  font-family: var(--sans); font-weight: 700; font-size: 40px;
+  letter-spacing: -0.02em;
+  color: var(--ember);
+}
+
+/* ============================
+   Principios — lista numerada (manifiesto, nosotros)
+   Colores por token; el modo Cream del manifiesto los sobrescribe.
+============================ */
+.principios {
+  list-style: none;
+  max-width: 660px;
+}
+.principios li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--sp-md);
+  padding: var(--sp-lg) 0;
+  border-top: 1px solid var(--border);
+}
+.principios li:last-child {
+  border-bottom: 1px solid var(--border);
+}
+.principios .num {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ember);
+  line-height: 2.1; /* alinea óptico con la primera línea del texto */
+}
+.principios p {
+  color: var(--muted);
+  font-size: 17px;
+  max-width: none;
+}
+.principios p strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+/* ============================
+   Cierre — Bloque Ember (fondo sólido), CTA de máximo impacto
+============================ */
+.cierre {
+  background: var(--ember);
+  margin-top: var(--sp-4xl);
+  padding-top: var(--sp-4xl); padding-bottom: var(--sp-4xl);
+}
+.cierre .wrap { text-align: center; }
+.cierre h2 {
+  font-size: clamp(40px, 6vw, 72px);
+  color: var(--void);
+  margin-bottom: var(--sp-2xl);
+}
+
+/* ============================
+   Footer — banda Void en todas las páginas
+============================ */
+footer {
+  background: var(--void);
+  border-top: 1px solid var(--border);
+  padding: var(--sp-xl) 0;
+}
+footer .wrap {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: var(--sp-md);
+}
+footer .foot-logo { font-weight: 700; font-size: 14px; color: var(--cream); }
+footer .foot-logo .dot { color: var(--ember); }
+footer .foot-meta {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  color: var(--dim);
+}
+footer a { color: var(--dim); text-decoration: none; transition: color 0.2s ease; }
+footer a:hover { color: var(--muted); }
+
+/* ============================
+   Motion — respeto a prefers-reduced-motion
+============================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .pill .pulse { animation: none; }
+  .nav-logo .dot { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}

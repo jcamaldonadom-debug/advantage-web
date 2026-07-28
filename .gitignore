@@ -1,0 +1,9 @@
+# Secretos y credenciales — nunca al repo (checklist ADvantage_SECURITY.md)
+.env
+.env.*
+credentials.json
+token.json
+
+# Sistema
+.DS_Store
+Thumbs.db

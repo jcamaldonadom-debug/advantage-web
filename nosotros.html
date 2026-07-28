@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADvantage · Nosotros</title>
+<meta name="description" content="ADvantage nació en Bogotá en 2026, para PYMEs establecidas que están cansadas de operar el marketing por corazonada.">
+<!-- Open Graph / preview al compartir (WhatsApp, LinkedIn, etc.).
+     El dominio va como placeholder: reemplazar TU-DOMINIO.netlify.app en las 10
+     páginas de una sola pasada antes de publicar. Ver DEPLOY.md, paso 1. -->
+<link rel="canonical" href="https://TU-DOMINIO.netlify.app/nosotros.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ADvantage">
+<meta property="og:locale" content="es_CO">
+<meta property="og:url" content="https://TU-DOMINIO.netlify.app/nosotros.html">
+<meta property="og:title" content="ADvantage · Nosotros">
+<meta property="og:description" content="ADvantage nació en Bogotá en 2026, para PYMEs establecidas que están cansadas de operar el marketing por corazonada.">
+<meta property="og:image" content="https://TU-DOMINIO.netlify.app/assets/brand/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ADvantage — Sistema y alma. Marketing con sistema documentado, no con intuición disfrazada de estrategia.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ADvantage · Nosotros">
+<meta name="twitter:description" content="ADvantage nació en Bogotá en 2026, para PYMEs establecidas que están cansadas de operar el marketing por corazonada.">
+<meta name="twitter:image" content="https://TU-DOMINIO.netlify.app/assets/brand/og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Chrome compartido del sitio (tokens, nav, footer, botones, tipografía) -->
+<link rel="stylesheet" href="assets/css/shared.css">
+
+<style>
+/* ============================
+   Nosotros — equipo, origen y datos (modo Void)
+   Spec: docs/web-spec/ADvantage_mensaje_nosotros_v1.md
+============================ */
+.nos-hero {
+  padding-top: calc(64px + var(--sp-4xl));
+  padding-bottom: var(--sp-2xl);
+}
+.nos-hero h1 { max-width: 820px; margin-bottom: var(--sp-lg); }
+.nos-hero .subhead { font-size: 19px; max-width: 640px; }
+
+.seccion-nos .cuerpo { font-size: 18px; max-width: 680px; }
+.seccion-nos .cuerpo + .cuerpo { margin-top: var(--sp-lg); }
+
+/* Bios de los co-fundadores — párrafos con el nombre en label mono,
+   sin card visual (esa duplicaba el retrato que ahora vive en el diagrama). */
+.bios-fundadores { margin-top: var(--sp-lg); }
+.bio-persona + .bio-persona { margin-top: var(--sp-xl); }
+.bio-persona .nombre-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ember);
+  display: block; margin-bottom: var(--sp-sm);
+}
+.bio-persona p { font-size: 16px; max-width: 680px; }
+
+/* .badge-iniciales → shared.css (segundo uso: también lo usa index.html) */
+.cierre-conjunto {
+  margin-top: var(--sp-2xl);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--border);
+}
+.cierre-conjunto p { font-size: 17px; max-width: 820px; }
+.cierre-conjunto p + p { margin-top: var(--sp-lg); }
+
+/* ============================
+   Diagrama del equipo — 3 niveles verticales: cliente → estrategas → facilitadores.
+   La línea del cliente toca SOLO la banda de estrategas — eso es lo que comunica
+   "somos el punto de comunicación", sin decirlo con texto. Solo tokens de spacing.
+   Spec sección 3 (diagrama final aprobado, reemplaza el de 3 columnas y el Venn).
+============================ */
+.equipo-flujo {
+  padding-top: var(--sp-3xl);
+  padding-bottom: var(--sp-3xl);
+  display: flex; flex-direction: column; align-items: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.nivel-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--dim);
+  text-align: center;
+  margin-top: var(--sp-sm);
+}
+
+/* Nivel 1 — Tu negocio */
+.nivel-cliente {
+  border: 1px dashed var(--dim);
+  border-radius: 12px;
+  padding: var(--sp-md) var(--sp-xl);
+  font-weight: 600; font-size: 16px; color: var(--cream);
+  text-align: center;
+}
+
+/* Conectores — flecha doble (conversación) vs simple (asignación):
+   la asimetría distingue las dos relaciones sin necesitar texto. */
+.conector-flujo {
+  font-family: var(--mono); font-size: 20px; line-height: 1;
+  color: var(--ember);
+  padding: var(--sp-sm) 0;
+}
+
+/* Nivel 2 — banda de estrategas: punto de encuentro con el cliente */
+.nivel-estrategas {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--ember);
+  border-radius: 12px;
+  padding: var(--sp-lg);
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: var(--sp-2xl);
+}
+.estratega {
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--sp-xs);
+}
+.estratega .nombre { font-weight: 600; font-size: 15px; color: var(--cream); }
+.estratega .rol {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ember);
+}
+
+/* Retrato compacto — reutilizado también dentro de la banda de estrategas */
+.mapa-retrato {
+  width: 88px; height: 88px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--cream);
+  position: relative;
+  border: 1px solid var(--border);
+  margin-bottom: var(--sp-xs);
+}
+.mapa-retrato img {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.mapa-retrato .badge-iniciales span { width: 56px; height: 56px; font-size: 22px; }
+
+/* Nivel 3 — facilitadores: frontera punteada, opacidad reducida =
+   "se activan condicionalmente", a diferencia de la banda sólida de arriba. */
+.frontera-facilitadores {
+  width: 100%;
+  border-top: 1px dashed var(--border);
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-lg);
+  display: flex; flex-direction: column; align-items: center;
+}
+.facilitadores-fila {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--sp-sm);
+}
+.nodo-tag {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
+  color: var(--muted);
+  background: var(--ink);
+  border: 1px dashed var(--border);
+  border-radius: 100px;
+  padding: var(--sp-sm) var(--sp-md);
+  opacity: 0.6;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+}
+.nodo-tag:hover,
+.nodo-tag:focus-visible,
+.nodo-tag[aria-expanded="true"] {
+  border-color: var(--ember);
+  color: var(--cream);
+  background: var(--ember-shadow);
+  opacity: 1;
+}
+
+/* Tarjeta de contexto — altura reservada, sin layout shift ni overflow */
+.mapa-contexto {
+  margin-top: var(--sp-xl);
+  width: 100%;
+  min-height: 88px; /* cabe el texto de contexto más largo en 2 líneas sin crecer */
+  display: flex; align-items: center;
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--ember);
+  border-radius: 0 8px 8px 0;
+  padding: var(--sp-md);
+}
+.mapa-contexto p {
+  font-size: 15px; color: var(--muted); max-width: none;
+  margin: 0;
+}
+.mapa-contexto .contexto-vacio { color: var(--dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
+
+/* Datos de la empresa */
+.datos-empresa {
+  display: flex; flex-wrap: wrap; gap: var(--sp-sm) var(--sp-md);
+  margin-top: var(--sp-md);
+}
+
+/* Cómo pensamos */
+.principios { margin-top: var(--sp-lg); }
+.link-manifiesto { margin-top: var(--sp-xl); display: inline-flex; }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <a href="index.html" class="nav-logo" aria-label="ADvantage inicio">ADVANTAGE<span class="dot">·</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="sistema-wat.html">El sistema</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
+    <li><a href="index.html#precio">Precio</a></li>
+    <li><a href="manifiesto.html">Manifiesto</a></li>
+    <li><a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="nav-cta">Agenda tu diagnóstico →</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Navegación móvil">
+  <a href="sistema-wat.html">El sistema</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="nosotros.html" aria-current="page">Nosotros</a>
+  <a href="index.html#precio">Precio</a>
+  <a href="manifiesto.html">Manifiesto</a>
+  <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="mobile-cta">Agenda tu diagnóstico →</a>
+</div>
+
+<!-- 1 · Intro -->
+<section class="nos-hero" aria-labelledby="nos-heading">
+  <div class="wrap">
+    <span class="label" data-anim="hero">Nosotros</span>
+    <h1 id="nos-heading" data-anim="hero">Dos personas dirigen esto, directo — sin intermediarios.</h1>
+    <p class="subhead" data-anim="hero">ADvantage nació en Bogotá en 2026, para PYMEs establecidas que están cansadas de operar el marketing por corazonada.</p>
+  </div>
+</section>
+
+<!-- 2 · Origen -->
+<section class="seccion-nos" id="origen" aria-label="Origen">
+  <div class="wrap">
+    <span class="label">Origen</span>
+    <p class="cuerpo" data-anim="parrafo">A finales de 2025, antes de terminar la universidad, tenía clara la alternativa que se venía: sueldo fijo, oficina de 8 a 5, resolviendo los problemas de negocio de otra persona y vendiendo mi tiempo por menos de lo que vale. No quería eso.</p>
+    <p class="cuerpo" data-anim="parrafo">Crecí viendo a mis papás no dejar que el mundo les apagara los sueños — equivocarse, acertar, y sobre todo, disfrutarlo. Esa fue la base. Lo primero que intenté fue ayudar a negocios que hacían bien su trabajo pero no tenían suficientes clientes — ser la persona de confianza para vender lo que fuera, cuando fuera, donde fuera. No funciona así. Hay que especializarse.</p>
+    <p class="cuerpo" data-anim="parrafo">Lo que sí tengo es un don para armar equipos que funcionan bien juntos. Por eso ADvantage no es una agencia de marketing en el sentido puro — aunque ahí está mi base técnica — es una agencia de relacionamiento estratégico. No hago todo solo, ni pretendo hacerlo. Conecto lo que cada negocio necesita con quien mejor lo puede ejecutar, y el sistema WAT es lo que hace que esa conexión no dependa de mi memoria o de mi criterio del día.</p>
+    <p class="cuerpo" data-anim="parrafo">Ese instinto se confirmó en julio de 2026: una conversación con María Paula Bacca que se alargó mucho más de lo planeado terminó en la decisión de que fuera co-fundadora. No fue un proceso de selección — fue exactamente lo que describo arriba, encontrar a alguien con quien el trabajo funciona.</p>
+  </div>
+</section>
+
+<!-- 3 · Quiénes dirigen esto -->
+<section class="seccion-nos" id="equipo" aria-label="Quiénes dirigen esto">
+  <div class="wrap">
+    <span class="label">Quiénes dirigen esto</span>
+
+    <div class="bios-fundadores">
+      <div class="bio-persona" data-anim="reveal">
+        <span class="nombre-label">Juan Camilo</span>
+        <p>Antes de ADvantage gestioné contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales, y trabajé procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales.</p>
+      </div>
+      <div class="bio-persona" data-anim="reveal">
+        <span class="nombre-label">María Paula</span>
+        <p>Coordiné activaciones de marca y desarrollé contenido y piezas gráficas para campañas en Bavaria — Michelob, Pony Malta, Redd's, Cola &amp; Pola — apoyándome en herramientas de IA para producción de contenido. Antes, en La Fábrica de Batidos, participé en producción de contenido y tendencias de marca, además de montar la experiencia de marca en la apertura de dos locales.</p>
+      </div>
+    </div>
+
+    <div class="cierre-conjunto" data-anim="reveal">
+      <p>Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario. No vendemos años de experiencia — vendemos que el sistema no depende de que uno de los dos tenga un buen día. Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia, los dos hacemos contenido. Juan Camilo trae gobierno de canales corporativos y rigor analítico de servicio al cliente; María Paula trae producción creativa de contenido con IA. Se suma, no se reparte.</p>
+      <p>El equipo se arma después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa.</p>
+    </div>
+
+    <!-- Diagrama del equipo — 3 niveles: cliente ↔ estrategas ↔ facilitadores.
+         La línea del cliente toca solo la banda de estrategas: comunica por
+         estructura que somos el punto de comunicación, sin decirlo con texto.
+         El contexto de cada facilitador se muestra en la tarjeta de abajo. -->
+    <div class="equipo-flujo" id="equipoFlujo" data-anim="reveal"
+         role="img" aria-label="Diagrama de tres niveles. Arriba, Tu negocio, quien contrata. Conectado con flecha doble de conversación directa a la banda de estrategas: Juan Camilo y María Paula, quienes coordinan. Conectado con flecha simple de asignación a la fila de facilitadores — filmmaker, community, diseño y más — quienes ejecutan según el proyecto. El negocio se comunica solo con los estrategas; ellos coordinan con los facilitadores.">
+      <div class="nivel-cliente">Tu negocio</div>
+      <span class="nivel-label">quien contrata</span>
+
+      <span class="conector-flujo" aria-hidden="true">↕</span>
+
+      <div class="nivel-estrategas">
+        <div class="estratega">
+          <div class="mapa-retrato">
+            <span class="badge-iniciales" aria-hidden="true"><span>JM</span></span>
+            <img src="assets/team/juan-camilo.png" alt="Juan Camilo Maldonado" onerror="this.style.display='none'">
+          </div>
+          <span class="nombre">Juan Camilo</span>
+          <span class="rol">Co-fundador</span>
+        </div>
+        <div class="estratega">
+          <div class="mapa-retrato">
+            <span class="badge-iniciales" aria-hidden="true"><span>MB</span></span>
+            <img src="assets/team/maria-paula.png" alt="María Paula Bacca" onerror="this.style.display='none'">
+          </div>
+          <span class="nombre">María Paula</span>
+          <span class="rol">Co-fundadora</span>
+        </div>
+      </div>
+      <span class="nivel-label">quienes coordinan</span>
+
+      <span class="conector-flujo" aria-hidden="true">↓</span>
+
+      <div class="frontera-facilitadores">
+        <div class="facilitadores-fila">
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Filmmaker</button>
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Community</button>
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Diseño</button>
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="El equipo se arma después del diagnóstico, no antes. Otros perfiles se suman según lo que el proyecto necesite.">+</button>
+        </div>
+        <span class="nivel-label">quienes ejecutan, según proyecto</span>
+      </div>
+
+      <div class="mapa-contexto" id="mapaContexto" aria-live="polite">
+        <p class="contexto-vacio">Pasa el cursor o toca un facilitador para ver el detalle</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Datos de la empresa -->
+<section class="seccion-nos" id="datos" aria-label="Datos de la empresa">
+  <div class="wrap">
+    <span class="label">Datos de la empresa</span>
+    <div class="datos-empresa" data-anim="reveal">
+      <span class="pill">Bogotá, Colombia</span>
+      <span class="pill">est. 2026</span>
+      <span class="pill">9 módulos</span>
+      <span class="pill"><span class="pulse" aria-hidden="true"></span>wat_system: activo</span>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Cómo pensamos -->
+<section class="seccion-nos" id="como-pensamos" aria-label="Cómo pensamos">
+  <div class="wrap">
+    <span class="label">Cómo pensamos</span>
+    <p class="cuerpo" data-anim="reveal">Los principios completos de por qué existe ADvantage están en el manifiesto. Acá los tres que más se sienten en el día a día trabajando con nosotros:</p>
+    <ol class="principios">
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">01</span>
+        <p><strong>El sistema es el producto.</strong> No lo que hacemos, sino cómo lo hacemos.</p>
+      </li>
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">02</span>
+        <p><strong>Sin datos no hay opinión.</strong> Pero los datos sin narrativa son ruido.</p>
+      </li>
+      <li data-anim="parrafo">
+        <span class="num" aria-hidden="true">03</span>
+        <p><strong>La transparencia no es un valor — es el modelo.</strong> El cliente puede ver cada workflow.</p>
+      </li>
+    </ol>
+    <a class="btn-ghost link-manifiesto" href="manifiesto.html" data-anim="reveal">Lee el manifiesto completo →</a>
+  </div>
+</section>
+
+<!-- 6 · Cierre — bloque Ember -->
+<section class="cierre" id="contacto" aria-labelledby="cierre-heading">
+  <div class="wrap" data-anim="rise">
+    <h2 id="cierre-heading">Agenda tu diagnóstico.</h2>
+    <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="btn-void">Agenda tu diagnóstico</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-logo">ADVANTAGE<span class="dot">·</span></span>
+    <span class="foot-meta">Bogotá · Colombia</span>
+    <span class="foot-meta"><a href="index.html">Inicio</a> · <a href="manifiesto.html">Manifiesto</a> · <a href="contacto.html">Contacto</a> · © 2026 ADvantage</span>
+  </div>
+</footer>
+
+<!-- GSAP 3.12.5 — vendoreado en el repo (sin CDN de terceros en runtime) -->
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+/* Mapa del equipo — cada nodo muestra su línea de contexto en la tarjeta de abajo.
+   Hover en desktop, tap en mobile y foco por teclado usan la misma ruta de código.
+   La tarjeta tiene altura reservada: no hay layout shift ni overflow. */
+(function () {
+  'use strict';
+  var mapa = document.getElementById('equipoFlujo');
+  var panel = document.getElementById('mapaContexto');
+  if (!mapa || !panel) return;
+
+  var nodos = [].slice.call(mapa.querySelectorAll('.nodo-tag'));
+  var vacio = panel.innerHTML;
+  var fijado = null; // nodo elegido con click/tap: el hover no lo pisa
+
+  function pintar(nodo) {
+    nodos.forEach(function (n) { n.setAttribute('aria-expanded', String(n === nodo)); });
+    if (nodo) {
+      var p = document.createElement('p');
+      p.textContent = nodo.getAttribute('data-contexto');
+      panel.replaceChildren(p);
+    } else {
+      panel.innerHTML = vacio;
+    }
+  }
+
+  nodos.forEach(function (nodo) {
+    nodo.addEventListener('mouseenter', function () { if (!fijado) pintar(nodo); });
+    nodo.addEventListener('focus', function () { if (!fijado) pintar(nodo); });
+    nodo.addEventListener('click', function () {
+      fijado = (fijado === nodo) ? null : nodo;
+      pintar(fijado);
+    });
+  });
+
+  mapa.addEventListener('mouseleave', function () { pintar(fijado); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && fijado) { fijado = null; pintar(null); }
+  });
+})();
+</script>
+</body>
+</html>

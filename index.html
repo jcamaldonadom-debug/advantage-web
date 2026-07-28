@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADvantage · Sistema y alma</title>
+<meta name="description" content="Sistema documentado, no intuición disfrazada de estrategia — para PYMEs de Bogotá que ya perdieron plata en marketing sin poder auditarlo.">
+<!-- Open Graph / preview al compartir (WhatsApp, LinkedIn, etc.).
+     El dominio va como placeholder: reemplazar TU-DOMINIO.netlify.app en las 10
+     páginas de una sola pasada antes de publicar. Ver DEPLOY.md, paso 1. -->
+<link rel="canonical" href="https://TU-DOMINIO.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ADvantage">
+<meta property="og:locale" content="es_CO">
+<meta property="og:url" content="https://TU-DOMINIO.netlify.app/">
+<meta property="og:title" content="ADvantage · Sistema y alma">
+<meta property="og:description" content="Sistema documentado, no intuición disfrazada de estrategia — para PYMEs de Bogotá que ya perdieron plata en marketing sin poder auditarlo.">
+<meta property="og:image" content="https://TU-DOMINIO.netlify.app/assets/brand/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ADvantage — Sistema y alma. Marketing con sistema documentado, no con intuición disfrazada de estrategia.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ADvantage · Sistema y alma">
+<meta name="twitter:description" content="Sistema documentado, no intuición disfrazada de estrategia — para PYMEs de Bogotá que ya perdieron plata en marketing sin poder auditarlo.">
+<meta name="twitter:image" content="https://TU-DOMINIO.netlify.app/assets/brand/og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="assets/brand/favicon.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Chrome compartido del sitio (tokens, nav, footer, botones, tipografía) -->
+<link rel="stylesheet" href="assets/css/shared.css">
+
+<style>
+/* ============================
+   1 · Hero
+============================ */
+.hero {
+  min-height: 100svh;
+  display: flex; align-items: center;
+  position: relative;
+  padding-top: 128px; padding-bottom: var(--sp-3xl);
+  margin-top: 0;
+  overflow: hidden;
+}
+.hero-glow {
+  position: absolute;
+  top: -20%; right: -10%;
+  width: 720px; height: 720px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,84,30,0.24) 0%, rgba(232,84,30,0.08) 45%, transparent 70%);
+  pointer-events: none;
+  will-change: transform;
+}
+/* Segunda capa: más chica y tensa, detrás del bloque de texto (que va a la
+   izquierda) — ahí antes no llegaba nada de luz. Estática a propósito: no se
+   anima, así que no lleva will-change ni la toca el parallax de #heroGlow. */
+.hero-glow-2 {
+  position: absolute;
+  top: 30%; left: -6%;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,84,30,0.14) 0%, rgba(232,84,30,0.04) 40%, transparent 68%);
+  pointer-events: none;
+}
+.hero-inner { position: relative; z-index: 1; }
+/* Componente .pill → shared.css */
+.hero-badge { margin-bottom: var(--sp-md); }
+
+/* Log de sistema — demuestra el sistema en vez de solo nombrarlo.
+   aria-hidden: el dato ya está en el stat de abajo y en el body; así el lector
+   de pantalla no anuncia los ">" ni los valores intermedios del contador. */
+.hero-log {
+  font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+  color: var(--dim);
+  margin-bottom: var(--sp-xl);
+}
+/* Solo los hijos directos son líneas — el <span class="val"> del contador va
+   anidado y tiene que seguir siendo inline. */
+.hero-log > span { display: block; }
+.hero-log > span + span { margin-top: var(--sp-xs); }
+.hero-log .val { color: var(--ember); }
+.hero .display { margin-bottom: var(--sp-md); }
+.hero h1 { max-width: 880px; margin-bottom: var(--sp-lg); }
+.hero-sub {
+  font-size: 19px;
+  max-width: 600px;
+  margin-bottom: var(--sp-2xl);
+}
+.hero-cta { display: flex; gap: var(--sp-md); align-items: center; flex-wrap: wrap; }
+
+/* ============================
+   2 · Problema
+============================ */
+.problema p {
+  font-size: 19px;
+  max-width: 680px;
+}
+.problema p + p { margin-top: var(--sp-lg); }
+.problema p strong { color: var(--cream); }
+
+/* ============================
+   3 · Sistema (WAT)
+============================ */
+.sistema-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--sp-2xl);
+  align-items: end;
+  margin-bottom: var(--sp-2xl);
+}
+.sistema-head p { font-size: 17px; }
+.stat {
+  text-align: right;
+  padding-left: var(--sp-xl);
+}
+.stat-val {
+  font-family: var(--serif); font-style: italic; font-weight: 500;
+  font-size: clamp(72px, 9vw, 120px);
+  line-height: 1;
+  color: var(--ember);
+  display: block;
+}
+.stat-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.modulos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-md);
+}
+.modulo-card {
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--sp-lg) var(--sp-md);
+  transition: background 0.2s ease, border-color 0.2s ease; /* hover lift-sutil: solo background + borde ember, sin translateY */
+}
+.modulo-card:hover {
+  background: var(--ember-shadow);
+  border-color: var(--ember);
+}
+.modulo-card .codigo {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+  color: var(--dim);
+  display: block; margin-bottom: var(--sp-sm);
+}
+.modulo-card .nombre {
+  font-weight: 600; font-size: 16px; letter-spacing: -0.015em;
+  color: var(--cream);
+}
+@media (max-width: 900px) { .modulos-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) {
+  .modulos-grid { grid-template-columns: 1fr; }
+  .sistema-head { grid-template-columns: 1fr; align-items: start; }
+  .stat { text-align: left; padding-left: 0; }
+}
+
+/* ============================
+   4 · Quiénes trabajan contigo
+============================ */
+/* Dos cards de co-fundadores, mismo peso — ninguna va primero */
+.equipo-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 260px));
+  gap: var(--sp-lg);
+  margin-top: var(--sp-2xl);
+  margin-bottom: var(--sp-2xl);
+}
+/* Card de persona (.equipo-card / .equipo-foto / .equipo-card-info) → shared.css */
+.equipo-bio p + p { margin-top: var(--sp-lg); }
+.equipo-bio .como-se-arma {
+  margin-top: var(--sp-xl);
+  padding-top: var(--sp-lg);
+  border-top: 1px solid var(--border);
+}
+@media (max-width: 640px) {
+  .equipo-cards { grid-template-columns: 1fr; max-width: 260px; }
+}
+
+/* ============================
+   5 · Precio  ·  6 · Prueba
+============================ */
+.precio p, .prueba p { font-size: 18px; max-width: 680px; }
+
+/* Cierre (bloque Ember) → shared.css */
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <a href="index.html" class="nav-logo" aria-label="ADvantage inicio">ADVANTAGE<span class="dot">·</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="sistema-wat.html">El sistema</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="#precio">Precio</a></li>
+    <li><a href="manifiesto.html">Manifiesto</a></li>
+    <li><a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="nav-cta">Agenda tu diagnóstico →</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Navegación móvil">
+  <a href="sistema-wat.html">El sistema</a>
+  <a href="servicios.html">Servicios</a>
+  <a href="nosotros.html">Nosotros</a>
+  <a href="#precio">Precio</a>
+  <a href="manifiesto.html">Manifiesto</a>
+  <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="mobile-cta">Agenda tu diagnóstico →</a>
+</div>
+
+<!-- 1 · Hero -->
+<section class="hero" id="hero" aria-labelledby="hero-heading">
+  <div class="hero-glow" id="heroGlow" aria-hidden="true"></div>
+  <div class="hero-glow-2" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="pill hero-badge" data-anim="hero">
+      <span class="pulse" aria-hidden="true"></span>
+      wat_system · activo
+    </div>
+    <div class="hero-log" data-anim="hero" aria-hidden="true">
+      <span>&gt; <span class="val" data-countup>9</span> módulos · cargados</span>
+      <span>&gt; documentados · auditables</span>
+    </div>
+    <span class="display" data-anim="hero">Sistema y alma.</span>
+    <h1 id="hero-heading" data-anim="hero">Marketing con sistema documentado, no con intuición disfrazada de estrategia.</h1>
+    <p class="hero-sub" data-anim="hero">Para PYMEs de Bogotá que ya perdieron plata en agencias que no podían explicar en qué se la gastaron.</p>
+    <div class="hero-cta" data-anim="hero">
+      <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="btn-primary">Agenda tu diagnóstico</a>
+      <a href="manifiesto.html" class="btn-ghost">Lee el manifiesto →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Problema -->
+<section class="problema" id="problema" aria-label="El problema">
+  <div class="wrap">
+    <span class="label">01 · El problema</span>
+    <p data-anim="parrafo">Llevas años siendo el motor del negocio: las decisiones pasan por ti, los clientes te buscan a ti, y el crecimiento se detiene cada vez que no estás. Contratar una agencia debería resolver eso.</p>
+    <p data-anim="parrafo">Pero la mayoría te entrega reportes que no explican nada, resultados que no puedes rastrear hasta una decisión concreta, y una factura mensual que pagas por fe — así que terminas haciéndolo todo de nuevo tú mismo, con menos presupuesto y menos confianza en la próxima agencia que te llame.</p>
+  </div>
+</section>
+
+<!-- 3 · Sistema (WAT) -->
+<section class="sistema" id="sistema" aria-labelledby="sistema-heading">
+  <div class="wrap">
+    <span class="label">02 · El sistema</span>
+    <div class="sistema-head">
+      <div data-anim="reveal">
+        <h2 id="sistema-heading">El sistema, no el talento del día.</h2>
+        <p>WAT son 9 módulos documentados: onboarding, research, contenido, SEO, pauta, CRO, growth, analítica y ventas. Cada uno corre igual la primera semana que en el mes doce — no depende de que alguien tenga un buen día.</p>
+      </div>
+      <div class="stat" data-anim="reveal">
+        <span class="stat-val" id="statModulos" data-countup aria-label="9 módulos">9</span>
+        <span class="stat-label">módulos</span>
+      </div>
+    </div>
+    <div class="modulos-grid" data-anim="grid">
+      <div class="modulo-card"><span class="codigo">W01</span><span class="nombre">Onboarding</span></div>
+      <div class="modulo-card"><span class="codigo">W02</span><span class="nombre">Research</span></div>
+      <div class="modulo-card"><span class="codigo">W03</span><span class="nombre">Contenido</span></div>
+      <div class="modulo-card"><span class="codigo">W04</span><span class="nombre">SEO</span></div>
+      <div class="modulo-card"><span class="codigo">W05</span><span class="nombre">Pauta</span></div>
+      <div class="modulo-card"><span class="codigo">W06</span><span class="nombre">CRO</span></div>
+      <div class="modulo-card"><span class="codigo">W07</span><span class="nombre">Growth</span></div>
+      <div class="modulo-card"><span class="codigo">W08</span><span class="nombre">Analítica</span></div>
+      <div class="modulo-card"><span class="codigo">W09</span><span class="nombre">Ventas</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Quiénes trabajan contigo -->
+<section class="equipo" id="equipo" aria-labelledby="equipo-heading">
+  <div class="wrap">
+    <span class="label">03 · Quiénes trabajan contigo</span>
+    <h2 id="equipo-heading" data-anim="reveal">No hay account manager júnior entre tú y quien decide. Somos dos, directo.</h2>
+    <div class="equipo-cards">
+      <div class="equipo-card" data-anim="reveal">
+        <div class="equipo-foto">
+          <span class="placeholder-iniciales" aria-hidden="true">JM</span>
+          <img src="assets/team/juan-camilo.png" alt="Juan Camilo Maldonado, co-fundador de ADvantage" onerror="this.style.display='none'">
+        </div>
+        <div class="equipo-card-info">
+          <span class="nombre">Juan Camilo Maldonado</span>
+          <span class="rol">Co-fundador</span>
+        </div>
+      </div>
+      <div class="equipo-card" data-anim="reveal">
+        <div class="equipo-foto">
+          <span class="badge-iniciales" aria-hidden="true"><span>MB</span></span>
+          <img src="assets/team/maria-paula.png" alt="María Paula Bacca, co-fundadora de ADvantage" onerror="this.style.display='none'">
+        </div>
+        <div class="equipo-card-info">
+          <span class="nombre">María Paula Bacca</span>
+          <span class="rol">Co-fundadora</span>
+        </div>
+      </div>
+    </div>
+    <div class="equipo-bio" data-anim="reveal">
+      <p>Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario. Juan Camilo gestionó contenido de marca en los canales corporativos de Samsung Electronics Colombia bajo lineamientos globales, y trabajó procesos de atención al cliente bajo cumplimiento GDPR. María Paula coordinó activaciones de marca y desarrolló contenido y piezas gráficas para campañas en Bavaria (Michelob, Pony Malta, Redd's, Cola &amp; Pola), apoyándose en herramientas de IA para producción de contenido; antes, en La Fábrica de Batidos, participó en producción de contenido y tendencias de marca. Los dos venimos de estrategia y contenido, con texturas distintas: gobierno de marca y datos de un lado, producción creativa con IA del otro.</p>
+      <div class="como-se-arma">
+        <p>El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · Objeción de precio -->
+<section class="precio" id="precio" aria-labelledby="precio-heading">
+  <div class="wrap">
+    <span class="label">04 · Precio</span>
+    <div data-anim="reveal">
+      <h2 id="precio-heading">El precio, sin caja negra — aunque no sea un número fijo.</h2>
+      <p>No publicamos una tarifa única. Cobrarle lo mismo a una PYME de 5 personas que a una de 50 sería mentirte antes de empezar. Lo que sí te mostramos es cómo se arma el número: alcance, módulos activos, tamaño del equipo. Sales del diagnóstico con una cifra real — no con un rango genérico, y no con "contáctanos para más información."</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · Prueba -->
+<section class="prueba" id="prueba" aria-labelledby="prueba-heading">
+  <div class="wrap">
+    <span class="label">05 · Prueba</span>
+    <div data-anim="rise">
+      <h2 id="prueba-heading">Esto se está construyendo en público.</h2>
+      <p>No tenemos años de casos para mostrarte todavía, y no te vamos a inventar uno. El primer sistema que audita ADvantage es el nuestro — así se construye esta misma página, con el mismo WAT que te ofrecemos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · Cierre — bloque Ember -->
+<section class="cierre" id="contacto" aria-labelledby="cierre-heading">
+  <div class="wrap" data-anim="rise">
+    <h2 id="cierre-heading">Agenda tu diagnóstico.</h2>
+    <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="btn-void">Agenda tu diagnóstico</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-logo">ADVANTAGE<span class="dot">·</span></span>
+    <span class="foot-meta">Bogotá · Colombia</span>
+    <span class="foot-meta"><a href="manifiesto.html">Manifiesto</a> · <a href="contacto.html">Contacto</a> · © 2026 ADvantage</span>
+  </div>
+</footer>
+
+<!-- GSAP 3.12.5 — vendoreado en el repo (sin CDN de terceros en runtime) -->
+<script src="assets/vendor/gsap.min.js"></script>
+<script src="assets/vendor/ScrollTrigger.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
