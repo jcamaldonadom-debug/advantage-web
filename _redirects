@@ -3,3 +3,8 @@
 # que no deben servirse en producción. En GitHub Pages este archivo se ignora:
 # ahí la mitigación pendiente es mover los specs fuera del repo publicado.
 /docs/*  /  404
+
+# Documentación de operación en la raíz (DEPLOY.md y cualquier .md que se sume
+# después). Netlify sirve por defecto todo lo que esté en el repo, así que sin
+# esta regla quedarían legibles en /DEPLOY.md.
+/*.md    /  404

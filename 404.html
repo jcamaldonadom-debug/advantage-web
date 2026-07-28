@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADvantage · Página no encontrada</title>
+<meta name="description" content="Esta página no existe. Vuelve al inicio o escríbenos directo por WhatsApp.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/assets/brand/favicon.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<!-- Chrome compartido del sitio (tokens, nav, footer, botones, tipografía) -->
+<link rel="stylesheet" href="/assets/css/shared.css">
+
+<style>
+/* Rutas absolutas en esta página: Netlify sirve el 404 desde cualquier
+   profundidad de URL, así que las relativas romperían. */
+.error-404 {
+  min-height: 100svh;
+  display: flex; align-items: center;
+  padding-top: 128px; padding-bottom: var(--sp-3xl);
+}
+.error-404 .codigo {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ember);
+  display: block; margin-bottom: var(--sp-lg);
+}
+.error-404 h1 { max-width: 720px; margin-bottom: var(--sp-lg); }
+.error-404 p {
+  font-size: 19px; max-width: 600px;
+  margin-bottom: var(--sp-2xl);
+}
+.error-404 .acciones { display: flex; gap: var(--sp-md); align-items: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" role="navigation" aria-label="Navegación principal">
+  <a href="/" class="nav-logo" aria-label="ADvantage inicio">ADVANTAGE<span class="dot">·</span></a>
+  <ul class="nav-links" role="list">
+    <li><a href="/sistema-wat.html">El sistema</a></li>
+    <li><a href="/servicios.html">Servicios</a></li>
+    <li><a href="/nosotros.html">Nosotros</a></li>
+    <li><a href="/index.html#precio">Precio</a></li>
+    <li><a href="/manifiesto.html">Manifiesto</a></li>
+    <li><a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="nav-cta">Agenda tu diagnóstico →</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú" aria-expanded="false" aria-controls="mobileNav">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Navegación móvil">
+  <a href="/sistema-wat.html">El sistema</a>
+  <a href="/servicios.html">Servicios</a>
+  <a href="/nosotros.html">Nosotros</a>
+  <a href="/index.html#precio">Precio</a>
+  <a href="/manifiesto.html">Manifiesto</a>
+  <a href="https://wa.me/573155971878?text=Hola%2C%20quiero%20agendar%20mi%20diagn%C3%B3stico%20con%20ADvantage.%0A%0ANegocio%3A%20%0ATama%C3%B1o%20del%20equipo%3A%20%0APrincipal%20reto%3A%20" target="_blank" rel="noopener noreferrer" class="mobile-cta">Agenda tu diagnóstico →</a>
+</div>
+
+<section class="error-404" aria-labelledby="e404-heading">
+  <div class="wrap">
+    <span class="codigo">Error 404</span>
+    <h1 id="e404-heading">Esta página no existe.</h1>
+    <p>El link que seguiste está roto o la página cambió de lugar. Nada que no se arregle volviendo al inicio.</p>
+    <div class="acciones">
+      <a href="/" class="btn-primary">Volver al inicio</a>
+      <a href="/servicios.html" class="btn-ghost">Ver los servicios →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-logo">ADVANTAGE<span class="dot">·</span></span>
+    <span class="foot-meta">Bogotá · Colombia</span>
+    <span class="foot-meta"><a href="/">Inicio</a> · <a href="/manifiesto.html">Manifiesto</a> · <a href="/contacto.html">Contacto</a> · © 2026 ADvantage</span>
+  </div>
+</footer>
+
+<script src="/assets/js/site.js"></script>
+</body>
+</html>
