@@ -120,12 +120,13 @@
 /* ============================
    4 · Quiénes trabajan contigo
 ============================ */
-.equipo-grid {
+/* Dos cards de co-fundadores, mismo peso — ninguna va primero */
+.equipo-cards {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: var(--sp-2xl);
-  align-items: start;
+  grid-template-columns: repeat(2, minmax(0, 260px));
+  gap: var(--sp-lg);
   margin-top: var(--sp-2xl);
+  margin-bottom: var(--sp-2xl);
 }
 /* Card de persona (.equipo-card / .equipo-foto / .equipo-card-info) → shared.css */
 .equipo-bio p + p { margin-top: var(--sp-lg); }
@@ -134,9 +135,8 @@
   padding-top: var(--sp-lg);
   border-top: 1px solid var(--border);
 }
-@media (max-width: 900px) {
-  .equipo-grid { grid-template-columns: 1fr; }
-  .equipo-card { max-width: 380px; }
+@media (max-width: 640px) {
+  .equipo-cards { grid-template-columns: 1fr; max-width: 260px; }
 }
 
 /* ============================
@@ -232,23 +232,33 @@
 <section class="equipo" id="equipo" aria-labelledby="equipo-heading">
   <div class="wrap">
     <span class="label">03 · Quiénes trabajan contigo</span>
-    <h2 id="equipo-heading" data-anim="reveal">No es un account manager júnior. Soy yo, directo.</h2>
-    <div class="equipo-grid">
+    <h2 id="equipo-heading" data-anim="reveal">No hay account manager júnior entre tú y quien decide. Somos dos, directo.</h2>
+    <div class="equipo-cards">
       <div class="equipo-card" data-anim="reveal">
         <div class="equipo-foto">
           <span class="placeholder-iniciales" aria-hidden="true">JM</span>
-          <img src="assets/team/juan-camilo.png" alt="Juan Camilo Maldonado, Lead Strategist de ADvantage" onerror="this.style.display='none'">
+          <img src="assets/team/juan-camilo.png" alt="Juan Camilo Maldonado, co-fundador de ADvantage" onerror="this.style.display='none'">
         </div>
         <div class="equipo-card-info">
           <span class="nombre">Juan Camilo Maldonado</span>
-          <span class="rol">Lead Strategist</span>
+          <span class="rol">Co-fundador</span>
         </div>
       </div>
-      <div class="equipo-bio" data-anim="reveal">
-        <p>Dirijo cada cuenta directamente: la estrategia, la pauta y la relación con el cliente pasan por mí, no por un intermediario. Antes de ADvantage gestioné contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales, y trabajé procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales. Documentar y medir no es nuevo para mí: es lo que hacía antes de que existiera WAT.</p>
-        <div class="como-se-arma">
-          <p>El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.</p>
+      <div class="equipo-card" data-anim="reveal">
+        <div class="equipo-foto">
+          <span class="badge-iniciales" aria-hidden="true"><span>MB</span></span>
+          <img src="assets/team/maria-paula.png" alt="María Paula Bacca, co-fundadora de ADvantage" onerror="this.style.display='none'">
         </div>
+        <div class="equipo-card-info">
+          <span class="nombre">María Paula Bacca</span>
+          <span class="rol">Co-fundadora</span>
+        </div>
+      </div>
+    </div>
+    <div class="equipo-bio" data-anim="reveal">
+      <p>Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario. Juan Camilo gestionó contenido de marca en los canales corporativos de Samsung Electronics Colombia bajo lineamientos globales, y trabajó procesos de atención al cliente bajo cumplimiento GDPR. María Paula coordinó activaciones de marca y desarrolló contenido y piezas gráficas para campañas en Bavaria (Michelob, Pony Malta, Redd's, Cola &amp; Pola), apoyándose en herramientas de IA para producción de contenido; antes, en La Fábrica de Batidos, participó en producción de contenido y tendencias de marca. Los dos venimos de estrategia y contenido, con texturas distintas: gobierno de marca y datos de un lado, producción creativa con IA del otro.</p>
+      <div class="como-se-arma">
+        <p>El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.</p>
       </div>
     </div>
   </div>

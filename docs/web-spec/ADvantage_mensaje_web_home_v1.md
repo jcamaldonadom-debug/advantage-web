@@ -63,18 +63,21 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 ### 4. Quiénes trabajan contigo
 
 **Headline:**
-> No es un account manager júnior. Soy yo, directo.
+> No hay account manager júnior entre tú y quien decide. Somos dos, directo.
 
-**Foto:** asset ya disponible (headshot, fondo blanco, subido por Juank — `Diseño_sin_título.png`). Usar en card individual, formato circular o cuadrado según grid del manual, fondo Void o Cream de la card detrás.
+**Fotos:** Juan Camilo tiene asset disponible (headshot, fondo blanco — `Diseño_sin_título.png`). María Paula manda foto real mañana — mientras tanto, usar badge de iniciales (MB) en el lenguaje visual del logo mark (fondo Void, iniciales en Cream o Ember), no la foto del CV ni un ícono genérico. Se reemplaza apenas llegue la foto real.
 
-**Card — nombre y rol:**
-> Juan Camilo Maldonado · Lead Strategist
+**Cards — nombre y rol:**
+> Juan Camilo Maldonado · Co-founder
+> María Paula Bacca · Co-founder
 
-**Body — bio (primera persona, en línea con la voz del sitio):**
-> Dirijo cada cuenta directamente: la estrategia, la pauta y la relación con el cliente pasan por mí, no por un intermediario. Antes de ADvantage gestioné contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales, y trabajé procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales. Documentar y medir no es nuevo para mí: es lo que hacía antes de que existiera WAT.
+**Body — bio (primera persona plural, en línea con la voz del sitio):**
+> Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario. Juan Camilo gestionó contenido de marca en los canales corporativos de Samsung Electronics Colombia bajo lineamientos globales, y trabajó procesos de atención al cliente bajo cumplimiento GDPR. María Paula coordinó activaciones de marca y desarrolló contenido y piezas gráficas para campañas en Bavaria (Michelob, Pony Malta, Redd's, Cola & Pola), apoyándose en herramientas de IA para producción de contenido; antes, en La Fábrica de Batidos, participó en producción de contenido y tendencias de marca. Los dos venimos de estrategia y contenido, con texturas distintas: gobierno de marca y datos de un lado, producción creativa con IA del otro.
 
 **Body — cómo se arma el equipo:**
 > El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.
+
+*(Nota: la versión completa de esta sección, con el tratamiento visual tipo diagrama, va en la página Nosotros — acá en el home es la versión corta.)*
 
 *Nota sobre lo que se dejó fuera a propósito: no se menciona que la experiencia en Samsung fue una pasantía ni que el rol en 5CA era de servicio al cliente. No es ocultar información — es describir por función (qué se hizo) en vez de por título (qué cargo tenía), porque el título resta más de lo que suma y la función es 100% real y verificable. Si un prospecto pregunta directo en la llamada, la respuesta honesta ya está lista y no contradice nada de lo escrito aquí.*
 
@@ -132,3 +135,9 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 - Revisar inclusión de Novamaker como prueba más adelante, cuando el proyecto esté más avanzado (decisión actual: no usarlo todavía).
 - Replicar esta misma pasada (solo anti-ai-writing, español neutro sin voseo) en: sistema-wat, servicios, nosotros, manifiesto (ya existe, auditar si sigue vigente), contacto.
 - Página de casos: no construir hasta tener al menos un cierre real que mostrar.
+
+---
+
+## Notas de implementación (Code)
+
+**Corrección 2026-07-27:** la sección 4 pasó de una card (Juan Camilo solo) a dos cards de co-fundadores, con bio en primera persona plural. El rol se implementa como **"Co-fundador"/"Co-fundadora" en español**, no "Co-founder" como aparece literal en este documento — decisión ya fijada arriba en "Registro y tono" (español neutro sin mezclar inglés) y confirmada explícitamente para unificar con la página Nosotros, que usa el mismo rol en español.

@@ -302,6 +302,22 @@ p strong { color: var(--cream); font-weight: 500; }
   display: block; margin-top: var(--sp-xs);
 }
 
+/* Badge de iniciales — geometría del logo mark (cuadrado redondeado, Inter 700).
+   Fallback mientras llega la foto real: basta con soltar el PNG en la ruta del <img>. */
+.badge-iniciales {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.badge-iniciales span {
+  display: flex; align-items: center; justify-content: center;
+  width: 96px; height: 96px;
+  background: var(--void);
+  border-radius: 8px;
+  font-family: var(--sans); font-weight: 700; font-size: 40px;
+  letter-spacing: -0.02em;
+  color: var(--ember);
+}
+
 /* ============================
    Principios — lista numerada (manifiesto, nosotros)
    Colores por token; el modo Cream del manifiesto los sobrescribe.

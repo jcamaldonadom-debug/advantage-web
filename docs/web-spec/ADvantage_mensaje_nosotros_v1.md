@@ -1,9 +1,13 @@
 # ADvantage — Mensaje Nosotros v1
 Reutiliza contenido ya validado (bios de Juan Camilo y María Paula, explicación de facilitadores, manifiesto). Filtrado por anti-ai-writing. Español neutro, sin voseo.
 
+---
+
 ## Decisión de arquitectura
 
 Home ya tiene una versión corta de "quiénes trabajan contigo" (trust-builder dentro del flujo de venta). Esta página es la versión completa — más espacio para el equipo, los datos de la empresa, y el origen. No repetir la bio de Juan Camilo palabra por palabra: mismo contenido base, más desarrollado.
+
+---
 
 ## Copy por sección
 
@@ -14,6 +18,8 @@ Home ya tiene una versión corta de "quiénes trabajan contigo" (trust-builder d
 
 **Body:**
 > ADvantage nació en Bogotá en 2026, para PYMEs establecidas que están cansadas de operar el marketing por corazonada.
+
+---
 
 ### 2. Origen
 
@@ -26,53 +32,64 @@ Home ya tiene una versión corta de "quiénes trabajan contigo" (trust-builder d
 >
 > Ese instinto se confirmó en julio de 2026: una conversación con María Paula Bacca que se alargó mucho más de lo planeado terminó en la decisión de que fuera co-fundadora. No fue un proceso de selección — fue exactamente lo que describo arriba, encontrar a alguien con quien el trabajo funciona.
 
+---
+
 ### 3. Quiénes dirigen esto — El sistema de equipo
 
 **Body — Juan Camilo (primera persona):**
 > Antes de ADvantage gestioné contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales, y trabajé procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales.
 
 **Body — María Paula (primera persona):**
-> Hoy hago prácticas de marketing en Bavaria — Michelob, Pony Malta, Redd's, Cola & Pola — coordinando activaciones de marca a nivel nacional y desarrollando contenido y piezas gráficas para campañas, apoyada en herramientas de IA para producción de contenido. Antes fui administradora de punto de venta en La Fábrica de Batidos, donde monté la experiencia de marca en la apertura de dos locales y entrené al personal nuevo.
+> Coordiné activaciones de marca y desarrollé contenido y piezas gráficas para campañas en Bavaria — Michelob, Pony Malta, Redd's, Cola & Pola — apoyándome en herramientas de IA para producción de contenido. Antes, en La Fábrica de Batidos, participé en producción de contenido y tendencias de marca, además de montar la experiencia de marca en la apertura de dos locales.
 
 **Body — cierre conjunto:**
-> Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario. No vendemos años de experiencia — vendemos que el sistema no depende de que uno de los dos tenga un buen día. Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia, los dos hacemos contenido. Juan Camilo trae gobierno de canales corporativos y rigor analítico de servicio al cliente; María Paula trae producción real de contenido con IA y experiencia operando puntos de venta. Se suma, no se reparte.
->
-> El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa.
+> Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario. No vendemos años de experiencia — vendemos que el sistema no depende de que uno de los dos tenga un buen día. Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia, los dos hacemos contenido. Juan Camilo trae gobierno de canales corporativos y rigor analítico de servicio al cliente; María Paula trae producción creativa de contenido con IA. Se suma, no se reparte.
+
+> El equipo se arma después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa.
 
 **Fotos/avatares:** Juan Camilo usa el asset real (`Diseño_sin_título.png`). María Paula manda foto real mañana — mientras tanto, badge de iniciales (MB) en el mismo lenguaje visual del logo mark, no la foto del CV ni un ícono genérico. Se reemplaza apenas llegue la foto real.
 
-### DIAGRAMA — spec obligatorio, no sugerencia
+---
 
-*(corrección: la versión anterior lo dejaba "a decisión de Code", eso fue un error mío)*
+**DIAGRAMA — spec final aprobado (reemplaza el de tres columnas)**
 
-Se descarta el Venn de círculos superpuestos — es difícil de maquetar bien y probablemente es la causa de los espacios en blanco raros que ya viste. Reemplazo por estructura de tres columnas con nodos y conectores, sin geometría de superposición:
+Concepto: no es "quién trae qué experiencia" (eso ya lo cuentan las bios de arriba) — es la estructura de cómo se organiza el equipo por cliente. Tres niveles verticales:
 
 ```
-[ Juan Camilo ]        [ Compartido ]        [ María Paula ]
-     |                       |                       |
-  Samsung                Estrategia              Bavaria
-  GDPR                    Contenido            IA para contenido
-  CSAT/DSAT          Universidad del Rosario   Activaciones de marca
-                                                Punto de venta
-                              |
-                    [ · · · Facilitadores · · · ]   ← nodos en línea punteada,
-                    Filmmaker · Community · Diseño     opacidad reducida
-                    "se activan según diagnóstico"
+        ┌──────────────────────────┐
+        │      TU NEGOCIO          │   borde punteado · "quien contrata"
+        └──────────────────────────┘
+                    ↕                  flecha doble — conversación directa
+   ┌────────────────────────────────┐
+   │  [JC] Juan Camilo               │  banda Ink + borde Ember
+   │  [MB] María Paula                │  retratos reales · "quienes coordinan"
+   └────────────────────────────────┘
+                    ↓                  flecha simple — asignación
+   - - - - - - - - - - - - - - - - -   frontera punteada: "según diagnóstico"
+   [filmmaker] [community] [diseño] [+]   opacidad 60% · "quienes ejecutan"
 ```
 
-Reglas concretas:
+**La regla que hace funcionar el diagrama:** la línea del cliente toca *solo* la banda de estrategas. No hay línea cliente→facilitadores. Eso comunica "somos el punto de comunicación" por estructura, sin decirlo con texto. La flecha doble (↕) arriba marca conversación continua con el cliente; la simple (↓) abajo marca asignación hacia los facilitadores — dos relaciones distintas, distinguibles sin leer nada.
 
-1. Columna izquierda y derecha: card de persona arriba (foto/badge + nombre), tags/pills debajo conectados por una línea delgada (Border `#22201A`). Incluye el objetivo. Mismo tamaño y peso visual en ambas columnas — nadie va primero jerárquicamente.
-2. Columna central ("Compartido"): visualmente distinta — fondo Ink `#111118` en vez de Void, o borde Ember, para que se lea como el punto de encuentro, no como una tercera persona.
-3. Fila de Facilitadores, debajo de las tres columnas: nodos con borde punteado y opacidad ~60% — la diferencia visual (sólido vs. punteado) es lo que comunica "comprometido siempre" vs. "se activa condicionalmente", sin necesitar el párrafo de texto que tenía la versión anterior. Dejar igual una micro-caption de una línea debajo por accesibilidad, no confiar solo en el estilo visual.
-4. Interacción — obligatoria: click (mobile) o hover (desktop) en cualquier nodo/tag expande una tarjeta pequeña con una línea de contexto real. Ejemplos: nodo "GDPR" → "Procesos de atención al cliente bajo cumplimiento GDPR en 5CA." · nodo "Facilitadores" → "Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto." Esto es lo que ya habías pedido y no quedó claro la primera vez — ahora es requisito, no opción.
-5. Espaciado: usar los tokens de spacing tal cual (gap entre columnas: `xl` 32px · padding de la sección completa: `3xl` 80px), no dejar que el framework decida paddings por defecto — ahí es donde suelen aparecer los espacios en blanco que no cuadran.
-6. Mobile: las tres columnas se apilan verticalmente (Juan Camilo → Compartido → María Paula → Facilitadores), no se comprimen horizontalmente.
+**Especificaciones:**
+- Niveles apilados verticalmente (no nodo central con ramas) — se lee mejor como flujo, y es más resistente en mobile que el Venn y las 3 columnas anteriores (ambos fallaron por reflow horizontal).
+- Nodo "Tu negocio": borde punteado `--dim`, transparente, en segunda persona (consistente con "tu diagnóstico" del resto del sitio). Va incluido, no se omite — sin ese nodo no se ve la relación que el diagrama existe para mostrar.
+- Banda de estrategas: fondo `--ink`, borde `--ember`, radius 12px, padding `--sp-lg`. Retratos reales (formato `.mapa-retrato`, 88px, ya existe) — personas, no cajas. Esto es lo que evita que se sienta como organigrama corporativo frío.
+- Etiquetas por función, nunca por rango: "quien contrata" / "quienes coordinan" / "quienes ejecutan, según proyecto" — jerarquía de flujo, no de poder.
+- Facilitadores: reutilizan el patrón `.nodo-tag` existente (borde punteado, opacidad 60%). ~7 nodos totales en el diagrama completo — más legible que los 13 de la versión anterior.
+- Interacción: mismo patrón de click/hover con tarjeta de contexto que ya funciona (accesible, sin layout shift). Se mantiene, no se reinventa.
+- Conectores: 1px `--border`, flechas en caracteres mono color `--ember` — sin geometría SVG compleja, mismo espíritu de "no pelear con el layout" que ya costó dos rondas.
+
+**Lo que NO va en este diagrama:** el fondo de cada fundador (Samsung, GDPR, Bavaria, IA para contenido, etc.) — eso vive en las bios de texto de arriba, no se repite acá como tags. Este diagrama es de estructura, no de currículum.
+
+---
 
 ### 4. Datos de la empresa
 
 **Badges/pills** (reutilizando el componente ya definido en Brand Tokens):
 > Bogotá, Colombia · est. 2026 · 9 módulos · wat_system: activo
+
+---
 
 ### 5. Cómo pensamos
 
@@ -85,20 +102,24 @@ Reglas concretas:
 
 **Link:** Lee el manifiesto completo →
 
+---
+
 ### 6. Cierre
 
 **Headline:**
 > Agenda tu diagnóstico.
 
-(mismo CTA — WhatsApp directo, mismo link)
+*(mismo CTA — WhatsApp directo, mismo link)*
+
+---
 
 ## Nota de layout para Code
 
-* El diagrama de la sección 3 reemplaza por completo el intento anterior de Venn — no lo uses como referencia, es un patrón distinto (columnas + nodos, no círculos superpuestos). Ver spec detallado arriba, no es opcional.
-* Badge de iniciales de María Paula: mismo tratamiento visual que el logo mark (fondo Void, iniciales en Ember o Cream), para que no se sienta como un placeholder roto.
-* Sección 5 no repite el manifiesto completo, solo 3 principios + link — evita que la página se sienta redundante con /manifiesto.
-* Motion del resto de la página: mismas reglas de Brand Tokens.
-* Si otras secciones del sitio también tienen espacios en blanco raros, revisar que estén usando los tokens de spacing exactos del manual y no paddings por defecto del framework — es el mismo problema de raíz que causó el del diagrama.
+- El diagrama de la sección 3 es ahora el de tres niveles verticales (cliente → estrategas → facilitadores) — no el de columnas ni el Venn, ambos descartados. Ver spec detallado arriba, no es opcional.
+- Badge de iniciales de María Paula: mismo tratamiento visual que el logo mark (fondo Void, iniciales en Ember o Cream), para que no se sienta como un placeholder roto.
+- Sección 5 no repite el manifiesto completo, solo 3 principios + link — evita que la página se sienta redundante con /manifiesto.
+- Motion del resto de la página: mismas reglas de Brand Tokens.
+- Si otras secciones del sitio también tienen espacios en blanco raros, revisar que estén usando los tokens de spacing exactos del manual y no paddings por defecto del framework — mismo problema de raíz que causó las dos rondas anteriores.
 
 ---
 
@@ -107,3 +128,5 @@ Reglas concretas:
 **Auditoría de spacing (2026-07-15):** verificada con grep sobre las 10 páginas. Los únicos valores de spacing fuera de token en todo el sitio eran los 4 del Venn (`margin-top: -210px`, `padding-right/left: 190px`, `margin: -68px`) más su `height: 480px` fijo — eso era el aire sobrante. El resto del sitio ya usa `var(--sp-*)`; `shared.css` solo tiene paddings internos de botón/pill/nav, que son medidas de componente, no de layout. Al reemplazar el diagrama el problema queda resuelto y no hay nada más que corregir.
 
 **Sobre "5CA" en el tooltip de GDPR:** el ejemplo del spec lo nombra, pero el spec del Home fijó explícitamente que no se menciona 5CA en el sitio ("describir por función, no por título"). Como el texto venía rotulado "Ejemplos" y la regla del Home es una decisión tomada, se omite el nombre de la empresa. Si se decide nombrarlo, hay que revisar también el Home para que el sitio no se contradiga.
+
+**Corrección 2026-07-27:** el diagrama de tres columnas (Juan Camilo / Compartido / María Paula + fila de Facilitadores) quedó descartado — Juank pidió un concepto distinto que muestre la estructura de organización por cliente (cliente ↔ estrategas ↔ facilitadores), no el "currículum" de cada fundador. Reemplazado por el diagrama de 3 niveles verticales de esta versión. Además: se eliminó la duplicación entre las cards `.fundadores` (foto grande + bio) y el diagrama — las bios quedan como párrafos de texto, sin card visual repetida; el párrafo de facilitadores se recortó porque el diagrama ya muestra los perfiles; bio de María Paula actualizada a tiempo pasado y sin el ángulo comercial de Batidos (pidió no enfatizarlo); roles unificados a español (`Co-fundador`/`Co-fundadora`) para que coincidan con el Home.

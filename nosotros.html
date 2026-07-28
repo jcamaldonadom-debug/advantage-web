@@ -30,72 +30,84 @@
 .seccion-nos .cuerpo { font-size: 18px; max-width: 680px; }
 .seccion-nos .cuerpo + .cuerpo { margin-top: var(--sp-lg); }
 
-/* Cards de los dos co-fundadores */
-.fundadores {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--sp-2xl);
-  margin-top: var(--sp-lg);
+/* Bios de los co-fundadores — párrafos con el nombre en label mono,
+   sin card visual (esa duplicaba el retrato que ahora vive en el diagrama). */
+.bios-fundadores { margin-top: var(--sp-lg); }
+.bio-persona + .bio-persona { margin-top: var(--sp-xl); }
+.bio-persona .nombre-label {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ember);
+  display: block; margin-bottom: var(--sp-sm);
 }
-.fundador .equipo-card { max-width: 320px; margin-bottom: var(--sp-md); }
-.fundador p { font-size: 16px; max-width: none; }
+.bio-persona p { font-size: 16px; max-width: 680px; }
 
-/* Badge de iniciales — geometría del logo mark (cuadrado redondeado, Inter 700).
-   Fallback mientras llega la foto real: basta con soltar el PNG en la ruta del <img>. */
-.badge-iniciales {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-}
-.badge-iniciales span {
-  display: flex; align-items: center; justify-content: center;
-  width: 96px; height: 96px;
-  background: var(--void);
-  border-radius: 8px;
-  font-family: var(--sans); font-weight: 700; font-size: 40px;
-  letter-spacing: -0.02em;
-  color: var(--ember);
-}
+/* .badge-iniciales → shared.css (segundo uso: también lo usa index.html) */
 .cierre-conjunto {
   margin-top: var(--sp-2xl);
   padding-top: var(--sp-lg);
   border-top: 1px solid var(--border);
 }
 .cierre-conjunto p { font-size: 17px; max-width: 820px; }
-@media (max-width: 820px) {
-  .fundadores { grid-template-columns: 1fr; gap: var(--sp-2xl); }
-}
+.cierre-conjunto p + p { margin-top: var(--sp-lg); }
 
 /* ============================
-   Mapa del equipo — tres columnas con nodos y conectores.
-   Sin geometría de superposición: solo tokens de spacing.
-   Spec sección 3 (diagrama obligatorio).
+   Diagrama del equipo — 3 niveles verticales: cliente → estrategas → facilitadores.
+   La línea del cliente toca SOLO la banda de estrategas — eso es lo que comunica
+   "somos el punto de comunicación", sin decirlo con texto. Solo tokens de spacing.
+   Spec sección 3 (diagrama final aprobado, reemplaza el de 3 columnas y el Venn).
 ============================ */
-.equipo-mapa {
+.equipo-flujo {
   padding-top: var(--sp-3xl);
   padding-bottom: var(--sp-3xl);
+  display: flex; flex-direction: column; align-items: center;
+  max-width: 640px;
+  margin: 0 auto;
 }
-.mapa-columnas {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-xl);
-  align-items: start;
+.nivel-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--dim);
+  text-align: center;
+  margin-top: var(--sp-sm);
 }
-.mapa-col {
-  display: flex; flex-direction: column;
-  align-items: center;
-}
-.mapa-col-titulo {
-  font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--ember);
-  margin-bottom: var(--sp-sm);
+
+/* Nivel 1 — Tu negocio */
+.nivel-cliente {
+  border: 1px dashed var(--dim);
+  border-radius: 12px;
+  padding: var(--sp-md) var(--sp-xl);
+  font-weight: 600; font-size: 16px; color: var(--cream);
   text-align: center;
 }
-.mapa-col-rol {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
-  text-transform: uppercase; color: var(--dim);
-  margin-bottom: var(--sp-md);
+
+/* Conectores — flecha doble (conversación) vs simple (asignación):
+   la asimetría distingue las dos relaciones sin necesitar texto. */
+.conector-flujo {
+  font-family: var(--mono); font-size: 20px; line-height: 1;
+  color: var(--ember);
+  padding: var(--sp-sm) 0;
 }
-/* Retrato compacto de la persona, mismo peso en las dos columnas laterales */
+
+/* Nivel 2 — banda de estrategas: punto de encuentro con el cliente */
+.nivel-estrategas {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--ember);
+  border-radius: 12px;
+  padding: var(--sp-lg);
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: var(--sp-2xl);
+}
+.estratega {
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--sp-xs);
+}
+.estratega .nombre { font-weight: 600; font-size: 15px; color: var(--cream); }
+.estratega .rol {
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ember);
+}
+
+/* Retrato compacto — reutilizado también dentro de la banda de estrategas */
 .mapa-retrato {
   width: 88px; height: 88px;
   border-radius: 12px;
@@ -103,7 +115,7 @@
   background: var(--cream);
   position: relative;
   border: 1px solid var(--border);
-  margin-bottom: var(--sp-md);
+  margin-bottom: var(--sp-xs);
 }
 .mapa-retrato img {
   position: relative; z-index: 1;
@@ -113,26 +125,30 @@
 }
 .mapa-retrato .badge-iniciales span { width: 56px; height: 56px; font-size: 22px; }
 
-/* Conector entre la card y los nodos, y entre nodos */
-.mapa-conector {
-  width: 1px; height: var(--sp-lg);
-  background: var(--border);
-}
-.mapa-nodos {
-  display: flex; flex-direction: column; align-items: center;
-  gap: var(--sp-sm);
+/* Nivel 3 — facilitadores: frontera punteada, opacidad reducida =
+   "se activan condicionalmente", a diferencia de la banda sólida de arriba. */
+.frontera-facilitadores {
   width: 100%;
+  border-top: 1px dashed var(--border);
+  margin-top: var(--sp-lg);
+  padding-top: var(--sp-lg);
+  display: flex; flex-direction: column; align-items: center;
+}
+.facilitadores-fila {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--sp-sm);
 }
 .nodo-tag {
   font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em;
   color: var(--muted);
   background: var(--ink);
-  border: 1px solid var(--border);
+  border: 1px dashed var(--border);
   border-radius: 100px;
   padding: var(--sp-sm) var(--sp-md);
+  opacity: 0.6;
   cursor: pointer;
   text-align: center;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, opacity 0.2s ease;
 }
 .nodo-tag:hover,
 .nodo-tag:focus-visible,
@@ -140,45 +156,14 @@
   border-color: var(--ember);
   color: var(--cream);
   background: var(--ember-shadow);
-}
-
-/* Columna central — punto de encuentro, no una tercera persona */
-.mapa-col-compartido {
-  background: var(--ink);
-  border: 1px solid var(--ember);
-  border-radius: 12px;
-  padding: var(--sp-lg) var(--sp-md);
-}
-.mapa-col-compartido .mapa-col-titulo { color: var(--ember); }
-
-/* Facilitadores — punteado + opacidad: se activan condicionalmente */
-.mapa-facilitadores {
-  margin-top: var(--sp-xl);
-  padding-top: var(--sp-xl);
-  border-top: 1px solid var(--border);
-  display: flex; flex-direction: column; align-items: center;
-  gap: var(--sp-md);
-}
-.facilitadores-fila {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: var(--sp-sm);
-}
-.facilitadores-fila .nodo-tag {
-  border-style: dashed;
-  opacity: 0.6;
-}
-.facilitadores-fila .nodo-tag:hover,
-.facilitadores-fila .nodo-tag:focus-visible,
-.facilitadores-fila .nodo-tag[aria-expanded="true"] { opacity: 1; }
-.facilitadores-caption {
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
-  color: var(--dim); text-align: center;
+  opacity: 1;
 }
 
 /* Tarjeta de contexto — altura reservada, sin layout shift ni overflow */
 .mapa-contexto {
   margin-top: var(--sp-xl);
-  min-height: 72px;
+  width: 100%;
+  min-height: 88px; /* cabe el texto de contexto más largo en 2 líneas sin crecer */
   display: flex; align-items: center;
   background: var(--ink);
   border: 1px solid var(--border);
@@ -191,11 +176,6 @@
   margin: 0;
 }
 .mapa-contexto .contexto-vacio { color: var(--dim); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; }
-
-@media (max-width: 860px) {
-  /* Columnas apiladas: Juan Camilo → Compartido → María Paula → Facilitadores */
-  .mapa-columnas { grid-template-columns: 1fr; gap: var(--sp-xl); }
-}
 
 /* Datos de la empresa */
 .datos-empresa {
@@ -258,98 +238,68 @@
 <section class="seccion-nos" id="equipo" aria-label="Quiénes dirigen esto">
   <div class="wrap">
     <span class="label">Quiénes dirigen esto</span>
-    <div class="fundadores">
-      <div class="fundador" data-anim="reveal">
-        <div class="equipo-card">
-          <div class="equipo-foto">
-            <span class="placeholder-iniciales" aria-hidden="true">JM</span>
-            <img src="assets/team/juan-camilo.png" alt="Juan Camilo Maldonado, co-fundador de ADvantage" onerror="this.style.display='none'">
-          </div>
-          <div class="equipo-card-info">
-            <span class="nombre">Juan Camilo Maldonado</span>
-            <span class="rol">Co-fundador · Lead Strategist</span>
-          </div>
-        </div>
+
+    <div class="bios-fundadores">
+      <div class="bio-persona" data-anim="reveal">
+        <span class="nombre-label">Juan Camilo</span>
         <p>Antes de ADvantage gestioné contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales, y trabajé procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales.</p>
       </div>
-      <div class="fundador" data-anim="reveal">
-        <div class="equipo-card">
-          <div class="equipo-foto">
-            <span class="badge-iniciales" aria-hidden="true"><span>MB</span></span>
-            <img src="assets/team/maria-paula.png" alt="María Paula Bacca, co-fundadora de ADvantage" onerror="this.style.display='none'">
-          </div>
-          <div class="equipo-card-info">
-            <span class="nombre">María Paula Bacca</span>
-            <span class="rol">Co-fundadora</span>
-          </div>
-        </div>
-        <p>Hoy hago prácticas de marketing en Bavaria — Michelob, Pony Malta, Redd's, Cola &amp; Pola — coordinando activaciones de marca a nivel nacional y desarrollando contenido y piezas gráficas para campañas, apoyada en herramientas de IA para producción de contenido. Antes fui administradora de punto de venta en La Fábrica de Batidos, donde monté la experiencia de marca en la apertura de dos locales y entrené al personal nuevo.</p>
+      <div class="bio-persona" data-anim="reveal">
+        <span class="nombre-label">María Paula</span>
+        <p>Coordiné activaciones de marca y desarrollé contenido y piezas gráficas para campañas en Bavaria — Michelob, Pony Malta, Redd's, Cola &amp; Pola — apoyándome en herramientas de IA para producción de contenido. Antes, en La Fábrica de Batidos, participé en producción de contenido y tendencias de marca, además de montar la experiencia de marca en la apertura de dos locales.</p>
       </div>
     </div>
 
     <div class="cierre-conjunto" data-anim="reveal">
-      <p>Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario. No vendemos años de experiencia — vendemos que el sistema no depende de que uno de los dos tenga un buen día. Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia, los dos hacemos contenido. Juan Camilo trae gobierno de canales corporativos y rigor analítico de servicio al cliente; María Paula trae producción real de contenido con IA y experiencia operando puntos de venta. Se suma, no se reparte.</p>
-      <p>El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa.</p>
+      <p>Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario. No vendemos años de experiencia — vendemos que el sistema no depende de que uno de los dos tenga un buen día. Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia, los dos hacemos contenido. Juan Camilo trae gobierno de canales corporativos y rigor analítico de servicio al cliente; María Paula trae producción creativa de contenido con IA. Se suma, no se reparte.</p>
+      <p>El equipo se arma después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa.</p>
     </div>
 
-    <!-- Mapa del equipo — tres columnas con nodos; el contexto de cada nodo
-         se muestra en la tarjeta de abajo (hover en desktop, tap en mobile) -->
-    <div class="equipo-mapa" id="equipoMapa" data-anim="reveal">
-      <div class="mapa-columnas">
-        <div class="mapa-col" data-col="juan-camilo">
-          <span class="mapa-col-titulo">Juan Camilo</span>
+    <!-- Diagrama del equipo — 3 niveles: cliente ↔ estrategas ↔ facilitadores.
+         La línea del cliente toca solo la banda de estrategas: comunica por
+         estructura que somos el punto de comunicación, sin decirlo con texto.
+         El contexto de cada facilitador se muestra en la tarjeta de abajo. -->
+    <div class="equipo-flujo" id="equipoFlujo" data-anim="reveal"
+         role="img" aria-label="Diagrama de tres niveles. Arriba, Tu negocio, quien contrata. Conectado con flecha doble de conversación directa a la banda de estrategas: Juan Camilo y María Paula, quienes coordinan. Conectado con flecha simple de asignación a la fila de facilitadores — filmmaker, community, diseño y más — quienes ejecutan según el proyecto. El negocio se comunica solo con los estrategas; ellos coordinan con los facilitadores.">
+      <div class="nivel-cliente">Tu negocio</div>
+      <span class="nivel-label">quien contrata</span>
+
+      <span class="conector-flujo" aria-hidden="true">↕</span>
+
+      <div class="nivel-estrategas">
+        <div class="estratega">
           <div class="mapa-retrato">
+            <span class="badge-iniciales" aria-hidden="true"><span>JM</span></span>
             <img src="assets/team/juan-camilo.png" alt="Juan Camilo Maldonado" onerror="this.style.display='none'">
           </div>
-          <span class="mapa-col-rol">Co-fundador</span>
-          <div class="mapa-conector" aria-hidden="true"></div>
-          <div class="mapa-nodos">
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Gestión de contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales.">Samsung</button>
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales.">GDPR</button>
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Análisis de métricas de satisfacción para clientes internacionales.">CSAT/DSAT</button>
-          </div>
+          <span class="nombre">Juan Camilo</span>
+          <span class="rol">Co-fundador</span>
         </div>
-
-        <div class="mapa-col mapa-col-compartido" data-col="compartido">
-          <span class="mapa-col-titulo">Compartido</span>
-          <span class="mapa-col-rol">El punto de encuentro</span>
-          <div class="mapa-conector" aria-hidden="true"></div>
-          <div class="mapa-nodos">
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia. Se suma, no se reparte.">Estrategia</button>
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Trabajamos en paralelo, no divididos por función: los dos hacemos contenido. Se suma, no se reparte.">Contenido</button>
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario.">Universidad del Rosario</button>
-          </div>
-        </div>
-
-        <div class="mapa-col" data-col="maria-paula">
-          <span class="mapa-col-titulo">María Paula</span>
+        <div class="estratega">
           <div class="mapa-retrato">
             <span class="badge-iniciales" aria-hidden="true"><span>MB</span></span>
             <img src="assets/team/maria-paula.png" alt="María Paula Bacca" onerror="this.style.display='none'">
           </div>
-          <span class="mapa-col-rol">Co-fundadora</span>
-          <div class="mapa-conector" aria-hidden="true"></div>
-          <div class="mapa-nodos">
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Prácticas de marketing en Bavaria — Michelob, Pony Malta, Redd's, Cola &amp; Pola.">Bavaria</button>
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Desarrollo de contenido y piezas gráficas para campañas, apoyada en herramientas de IA para producción de contenido.">IA para contenido</button>
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Coordinación de activaciones de marca a nivel nacional.">Activaciones de marca</button>
-            <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Administradora de punto de venta en La Fábrica de Batidos: montaje de la experiencia de marca en la apertura de dos locales y entrenamiento del personal nuevo.">Punto de venta</button>
-          </div>
+          <span class="nombre">María Paula</span>
+          <span class="rol">Co-fundadora</span>
         </div>
       </div>
+      <span class="nivel-label">quienes coordinan</span>
 
-      <div class="mapa-facilitadores">
-        <span class="mapa-col-titulo">Facilitadores</span>
+      <span class="conector-flujo" aria-hidden="true">↓</span>
+
+      <div class="frontera-facilitadores">
         <div class="facilitadores-fila">
           <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Filmmaker</button>
           <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Community</button>
           <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="Se asignan después del diagnóstico — nunca comprometidos antes de saber qué necesita el proyecto.">Diseño</button>
+          <button type="button" class="nodo-tag" aria-expanded="false" aria-controls="mapaContexto" data-contexto="El equipo se arma después del diagnóstico, no antes. Otros perfiles se suman según lo que el proyecto necesite.">+</button>
         </div>
-        <span class="facilitadores-caption">Se activan según diagnóstico, no antes</span>
+        <span class="nivel-label">quienes ejecutan, según proyecto</span>
       </div>
 
       <div class="mapa-contexto" id="mapaContexto" aria-live="polite">
-        <p class="contexto-vacio">Pasa el cursor o toca un nodo para ver el detalle</p>
+        <p class="contexto-vacio">Pasa el cursor o toca un facilitador para ver el detalle</p>
       </div>
     </div>
   </div>
@@ -417,7 +367,7 @@
    La tarjeta tiene altura reservada: no hay layout shift ni overflow. */
 (function () {
   'use strict';
-  var mapa = document.getElementById('equipoMapa');
+  var mapa = document.getElementById('equipoFlujo');
   var panel = document.getElementById('mapaContexto');
   if (!mapa || !panel) return;
 
