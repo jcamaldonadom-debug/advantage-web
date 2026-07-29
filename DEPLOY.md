@@ -5,23 +5,24 @@ No hay comando de build, no hay `node_modules`, no hay framework.
 
 ---
 
-## Paso 1 — Reemplazar el dominio placeholder (ANTES de publicar)
+## Paso 1 — El dominio en canonical y Open Graph
 
-Las 10 páginas públicas llevan tags Open Graph con el dominio como marcador
-`TU-DOMINIO.netlify.app`. Si no lo cambias, el preview al compartir por WhatsApp
-o LinkedIn apunta a un dominio que no existe y **sale sin imagen**.
+✅ **Ya aplicado**: las 10 páginas apuntan a `advantagecol.netlify.app`.
 
-Cuando sepas el dominio final, una sola pasada:
+Solo hay que repetir esto **el día que se conecte un dominio propio**. Los tags
+`canonical` y `og:*` llevan el dominio absoluto porque los scrapers de redes no
+resuelven rutas relativas; si apuntan a un dominio que no existe, el preview al
+compartir por WhatsApp o LinkedIn **sale sin imagen** y el canonical señala a la
+nada.
 
 ```bash
-# ejemplo con dominio propio; usa el tuyo
-sed -i 's|TU-DOMINIO.netlify.app|advantage.com.co|g' *.html
-grep -c "TU-DOMINIO" *.html   # debe dar 0 en todas
-git commit -am "deploy: dominio real en canonical y Open Graph" && git push
+sed -i 's|advantagecol.netlify.app|tu-dominio-nuevo.com|g' *.html
+grep -rc "advantagecol.netlify.app" *.html   # debe dar 0 en todas
+git commit -am "deploy: dominio nuevo en canonical y Open Graph" && git push
 ```
 
-Si primero vas a usar el subdominio gratis de Netlify, pon ese
-(`loquesea.netlify.app`) y repite el `sed` el día que conectes el dominio propio.
+Después de cambiarlo, revalidar el preview pegando el link en un chat de
+WhatsApp contigo mismo — el scraper cachea, así que puede tardar en refrescar.
 
 ---
 
@@ -62,10 +63,10 @@ En orden, y no des el sitio por publicado hasta que los 6 pasen:
 | # | Qué revisar | Cómo |
 |---|---|---|
 | 1 | Las 11 páginas cargan | Recorrer la nav completa + las 4 subpáginas de servicios |
-| 2 | Headers de seguridad activos | `curl -I https://TU-DOMINIO/` → debe aparecer `content-security-policy` y `x-frame-options` |
-| 3 | Los specs internos NO son públicos | Abrir `https://TU-DOMINIO/docs/web-spec/ADvantage_mensaje_web_home_v1.md` → **tiene que dar 404** |
+| 2 | Headers de seguridad activos | `curl -I https://advantagecol.netlify.app/` → debe aparecer `content-security-policy` y `x-frame-options` |
+| 3 | Los specs internos NO son públicos | Abrir `https://advantagecol.netlify.app/docs/web-spec/ADvantage_mensaje_web_home_v1.md` → **tiene que dar 404** |
 | 4 | Preview al compartir | Pegar el link en un chat de WhatsApp contigo mismo → debe salir la imagen Ember con "Sistema y alma." |
-| 5 | 404 propia | Abrir `https://TU-DOMINIO/cualquier-cosa` → la página de error del sitio, no la de Netlify |
+| 5 | 404 propia | Abrir `https://advantagecol.netlify.app/cualquier-cosa` → la página de error del sitio, no la de Netlify |
 | 6 | CTA de WhatsApp | Tocar "Agenda tu diagnóstico" desde el celular → abre WhatsApp al +57 315 597 1878 con el mensaje pre-cargado |
 
 El paso 3 es el que más importa: `docs/web-spec/` contiene decisiones de pricing,

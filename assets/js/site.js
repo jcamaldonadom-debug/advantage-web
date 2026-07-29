@@ -34,25 +34,10 @@
     });
   }
 
-  // Glow parallax (máx 40px, sigue cursor y scroll) — solo en páginas con hero
-  var glow = document.getElementById('heroGlow');
-  var clamp40 = gsap.utils.clamp(-40, 40);
-  if (glow) {
-    window.addEventListener('mousemove', function (e) {
-      var mx = e.clientX - window.innerWidth / 2;
-      var my = e.clientY - window.innerHeight / 2;
-      gsap.to(glow, {
-        x: clamp40(mx * 0.03), y: clamp40(my * 0.03),
-        duration: 1.2, ease: 'power1.out'
-      });
-    });
-    ScrollTrigger.create({
-      trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1.2,
-      onUpdate: function (self) {
-        gsap.to(glow, { y: clamp40(self.progress * 40), duration: 0.3, ease: 'power1.out', overwrite: 'auto' });
-      }
-    });
-  }
+  // El parallax de #heroGlow se retiró con el hero de constelación: ese glow ya
+  // no existe y el hero nuevo trae su propio parallax sobre #watGlow, inline en
+  // index.html. El bloque de [data-anim="hero"] de arriba NO se toca — lo usan
+  // las otras 9 páginas para su entrada.
 
   // ScrollReveal — párrafos uno a la vez y secciones (trigger 80% viewport)
   gsap.utils.toArray('[data-anim="parrafo"], [data-anim="reveal"], [data-anim="rise"]').forEach(function (el) {
