@@ -202,6 +202,17 @@
   background: var(--ember-shadow);
   border-color: var(--ember);
 }
+/* Ícono: primer set de iconografía del sitio. Los 9 comparten viewBox 24,
+   stroke 1.5 y currentColor — así heredan el color de la card y no suman
+   peticiones ni orígenes al CSP. */
+.modulo-card .icono {
+  display: block;
+  width: 22px; height: 22px;
+  color: var(--dim);
+  margin-bottom: var(--sp-md);
+  transition: color 0.2s ease;
+}
+.modulo-card:hover .icono { color: var(--ember); }
 .modulo-card .codigo {
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
   color: var(--dim);
@@ -210,7 +221,25 @@
 .modulo-card .nombre {
   font-weight: 600; font-size: 16px; letter-spacing: -0.015em;
   color: var(--cream);
+  display: block;
 }
+/* Traducción a beneficio — la jerga del módulo no le dice nada a una PYME */
+.modulo-card .beneficio {
+  font-size: 13px; line-height: 1.5;
+  color: var(--muted);
+  margin-top: var(--sp-sm);
+}
+.modulo-card .badge-prerequisito { margin-top: var(--sp-sm); display: inline-block; }
+
+/* Dependencia real: al enfocar Research se resaltan sus tres dependientes
+   (Contenido, SEO, Pauta). Se marca con clase desde JS en vez de dibujar
+   líneas: en el grid de 3 columnas una de las conexiones es diagonal y a 2
+   columnas se rompen otras dos. Solo cambia color — sin layout shift. */
+.modulo-card.es-dependiente {
+  border-color: var(--ember);
+  background: var(--ember-shadow);
+}
+.modulo-card.es-dependiente .icono { color: var(--ember); }
 @media (max-width: 900px) { .modulos-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) {
   .modulos-grid { grid-template-columns: 1fr; }
@@ -230,7 +259,9 @@
   margin-bottom: var(--sp-2xl);
 }
 /* Card de persona (.equipo-card / .equipo-foto / .equipo-card-info) → shared.css */
+/* .bio-hechos → shared.css (segundo uso: también lo usa nosotros.html) */
 .equipo-bio p + p { margin-top: var(--sp-lg); }
+.equipo-bio .bio-hechos { margin-top: var(--sp-lg); margin-bottom: var(--sp-lg); }
 .equipo-bio .como-se-arma {
   margin-top: var(--sp-xl);
   padding-top: var(--sp-lg);
@@ -244,6 +275,22 @@
    5 · Precio  ·  6 · Prueba
 ============================ */
 .precio p, .prueba p { font-size: 18px; max-width: 680px; }
+
+/* Fórmula de precio — pieza visual, no calculadora. Los .pill salen de
+   shared.css; acá solo los signos y el resultado. */
+.formula-precio {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--sp-sm);
+  margin-top: var(--sp-2xl);
+}
+.formula-precio .signo {
+  font-family: var(--mono); font-size: 15px;
+  color: var(--ember);
+}
+.formula-precio .resultado {
+  font-weight: 600; font-size: 16px;
+  color: var(--cream);
+}
 
 /* Cierre (bloque Ember) → shared.css */
 </style>
@@ -380,16 +427,73 @@
         <span class="stat-label">módulos</span>
       </div>
     </div>
-    <div class="modulos-grid" data-anim="grid">
-      <div class="modulo-card"><span class="codigo">W01</span><span class="nombre">Onboarding</span></div>
-      <div class="modulo-card"><span class="codigo">W02</span><span class="nombre">Research</span></div>
-      <div class="modulo-card"><span class="codigo">W03</span><span class="nombre">Contenido</span></div>
-      <div class="modulo-card"><span class="codigo">W04</span><span class="nombre">SEO</span></div>
-      <div class="modulo-card"><span class="codigo">W05</span><span class="nombre">Pauta</span></div>
-      <div class="modulo-card"><span class="codigo">W06</span><span class="nombre">CRO</span></div>
-      <div class="modulo-card"><span class="codigo">W07</span><span class="nombre">Growth</span></div>
-      <div class="modulo-card"><span class="codigo">W08</span><span class="nombre">Analítica</span></div>
-      <div class="modulo-card"><span class="codigo">W09</span><span class="nombre">Ventas</span></div>
+    <!-- Íconos: set propio, los 9 con viewBox 0 0 24 24 y stroke 1.5.
+         aria-hidden porque el nombre del módulo va justo al lado en texto. -->
+    <div class="modulos-grid" data-anim="grid" id="modulosGrid">
+      <div class="modulo-card" data-modulo="w01" data-habilita="w02">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h8"/><path d="M18 12H10"/><path d="m15 9 3 3-3 3"/>
+        </svg>
+        <span class="codigo">W01</span><span class="nombre">Onboarding</span>
+        <p class="beneficio">Entendemos tu negocio antes de proponer nada. Cero improvisación.</p>
+      </div>
+      <div class="modulo-card" data-modulo="w02" data-habilita="w03 w04 w05">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        </svg>
+        <span class="codigo">W02</span><span class="nombre">Research</span>
+        <p class="beneficio">Mapeamos competencia y clientes. Decisiones basadas en datos, no en corazonadas.</p>
+        <span class="badge-prerequisito">Prerequisito</span>
+      </div>
+      <div class="modulo-card" data-modulo="w03">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 3h9l5 5v13a0 0 0 0 1 0 0H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><path d="M8 13h8"/><path d="M8 17h5"/>
+        </svg>
+        <span class="codigo">W03</span><span class="nombre">Contenido</span>
+        <p class="beneficio">Mensajes que venden, sin frases corporativas genéricas.</p>
+      </div>
+      <div class="modulo-card" data-modulo="w04">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="10" cy="10" r="6"/><path d="m19 19-4.5-4.5"/><path d="M7 11.5 9.5 9l2 2L14 8"/>
+        </svg>
+        <span class="codigo">W04</span><span class="nombre">SEO</span>
+        <p class="beneficio">Que te encuentren en Google justo cuando tu cliente ya está listo para comprar.</p>
+      </div>
+      <div class="modulo-card" data-modulo="w05">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>
+        </svg>
+        <span class="codigo">W05</span><span class="nombre">Pauta</span>
+        <p class="beneficio">Anuncios estructurados para compradores reales, no para likes.</p>
+      </div>
+      <div class="modulo-card" data-modulo="w06">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 5h18l-7 8v6l-4 2v-8Z"/>
+        </svg>
+        <span class="codigo">W06</span><span class="nombre">CRO</span>
+        <p class="beneficio">Arreglamos tu web para que las visitas no se vayan sin comprar.</p>
+      </div>
+      <div class="modulo-card" data-modulo="w07">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 17 10 11l3.5 3.5L20 8"/><path d="M15 8h5v5"/>
+        </svg>
+        <span class="codigo">W07</span><span class="nombre">Growth</span>
+        <p class="beneficio">Lanzamiento, precios, referidos, retención — crecimiento con plan, no solo con más pauta.</p>
+      </div>
+      <div class="modulo-card" data-modulo="w08">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 20V4"/><path d="M4 20h16"/><path d="M8 20v-6"/><path d="M13 20V9"/><path d="M18 20v-9"/>
+        </svg>
+        <span class="codigo">W08</span><span class="nombre">Analítica</span>
+        <p class="beneficio">Rastreamos qué acción trajo a qué cliente — no solo cuántas visitas tuviste.</p>
+      </div>
+      <div class="modulo-card" data-modulo="w09">
+        <svg class="icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 3h9l5 5v13a0 0 0 0 1 0 0H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><path d="M14 3v5h5"/><circle cx="12" cy="15" r="3"/><path d="M12 13.5v3"/>
+        </svg>
+        <span class="codigo">W09</span><span class="nombre">Ventas</span>
+        <p class="beneficio">Pitch decks, propuestas y scripts de ventas — listos para que tu equipo los use, no plantillas genéricas.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -422,7 +526,12 @@
       </div>
     </div>
     <div class="equipo-bio" data-anim="reveal">
-      <p>Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario. Juan Camilo gestionó contenido de marca en los canales corporativos de Samsung Electronics Colombia bajo lineamientos globales, y trabajó procesos de atención al cliente bajo cumplimiento GDPR. María Paula coordinó activaciones de marca y desarrolló contenido y piezas gráficas para campañas en Bavaria (Michelob, Pony Malta, Redd's, Cola &amp; Pola), apoyándose en herramientas de IA para producción de contenido; antes, en La Fábrica de Batidos, participó en producción de contenido y tendencias de marca. Los dos venimos de estrategia y contenido, con texturas distintas: gobierno de marca y datos de un lado, producción creativa con IA del otro.</p>
+      <p>Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario.</p>
+      <ul class="bio-hechos">
+        <li><strong>Juan Camilo</strong> — canales corporativos de Samsung Electronics Colombia · atención al cliente bajo cumplimiento GDPR</li>
+        <li><strong>María Paula</strong> — campañas para Bavaria (Michelob, Pony Malta, Redd's, Cola &amp; Pola) · producción de contenido con herramientas de IA</li>
+      </ul>
+      <p>Texturas distintas, mismo trabajo: se suma, no se reparte.</p>
       <div class="como-se-arma">
         <p>El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.</p>
       </div>
@@ -437,6 +546,18 @@
     <div data-anim="reveal">
       <h2 id="precio-heading">El precio, sin caja negra — aunque no sea un número fijo.</h2>
       <p>No publicamos una tarifa única. Cobrarle lo mismo a una PYME de 5 personas que a una de 50 sería mentirte antes de empezar. Lo que sí te mostramos es cómo se arma el número: alcance, módulos activos, tamaño del equipo. Sales del diagnóstico con una cifra real — no con un rango genérico, y no con "contáctanos para más información."</p>
+      <!-- Hace tangible lo que el párrafo de arriba ya dice. aria-hidden: ese
+           mismo párrafo enumera los tres factores, así que un lector de pantalla
+           no pierde nada y se ahorra oír los signos sueltos. -->
+      <div class="formula-precio" aria-hidden="true">
+        <span class="pill">Alcance</span>
+        <span class="signo">+</span>
+        <span class="pill">Módulos activos</span>
+        <span class="signo">+</span>
+        <span class="pill">Tamaño de equipo</span>
+        <span class="signo">=</span>
+        <span class="resultado">Presupuesto real</span>
+      </div>
     </div>
   </div>
 </section>

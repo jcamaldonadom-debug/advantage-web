@@ -36,6 +36,12 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 **CTA primario:** Agenda tu diagnóstico
 **CTA secundario:** Lee el manifiesto →
 
+**Actualización — más presencia visual (feedback: "el hero no capta la atención de primerazo"):**
+1. **Log de sistema en JetBrains Mono**, debajo del badge "wat_system · activo", estilo consola: `> 9 módulos · cargados` / `> wat_system: activo`. Funcional, no decorativo — demuestra el sistema en vez de solo nombrarlo.
+2. **Contador "9 módulos" (CountUp) sube al hero** — hoy vive más abajo en la página; en el hero da un hook cuantificado inmediato.
+3. **Glow más intenso** — está al 16% de opacidad, casi invisible contra Void `#09090F`. Subir intensidad o agregar una segunda capa, sin volverse decorativo.
+4. **Punto Ember del logo, parpadeo sutil (CSS, todas las páginas, no solo el hero)** — el manual ya define el punto como "indica el sistema activo, como un cursor... running". Hacerlo parpadear es coherente con su propio significado, no una animación nueva inventada.
+
 ---
 
 ### 2. Problema (narrativo — prosa web, no listado de dolores)
@@ -58,6 +64,22 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 
 **Stat destacado:** 9 módulos *(animado, ver mapeo de motion)*
 
+**Grid de 9 módulos — con línea de beneficio (corrección por auditoría UX: jerga sin traducir genera carga cognitiva). Nombres de módulo se mantienen sin cambio — ya están en el hero y en Sistema WAT, renombrarlos aquí rompería la consistencia del sitio:**
+
+| Módulo | Línea de beneficio |
+|---|---|
+| W01 · Onboarding | Entendemos tu negocio antes de proponer nada. Cero improvisación. |
+| W02 · Research | Mapeamos competencia y clientes. Decisiones basadas en datos, no en corazonadas. |
+| W03 · Contenido | Mensajes que venden, sin frases corporativas genéricas. |
+| W04 · SEO | Que te encuentren en Google justo cuando tu cliente ya está listo para comprar. |
+| W05 · Pauta | Anuncios estructurados para compradores reales, no para likes. |
+| W06 · CRO | Arreglamos tu web para que las visitas no se vayan sin comprar. |
+| W07 · Growth | Lanzamiento, precios, referidos, retención — crecimiento con plan, no solo con más pauta. |
+| W08 · Analítica | Rastreamos qué acción trajo a qué cliente — no solo cuántas visitas tuviste. |
+| W09 · Ventas | Pitch decks, propuestas y scripts de ventas — listos para que tu equipo los use, no plantillas genéricas. |
+
+*Nota sobre las correcciones a Growth y Ventas: la auditoría externa (Gemini, sobre grupo focal) proponía "identificamos qué canal deja plata y le pisamos el acelerador" para Growth y "conectamos el marketing con tu equipo comercial" para Ventas — ninguna de las dos coincide con lo que se extrajo como hecho real de los workflows (ver `ADvantage_mensaje_sistema_wat_v1.md`). Growth cubre lanzamiento/pricing/referidos/retención, no optimización de canales pagos — eso es Pauta. Ventas produce materiales de habilitación comercial, no es una función de enlace entre departamentos. Se corrigieron para que el beneficio no prometa algo que el módulo no hace.*
+
 ---
 
 ### 4. Quiénes trabajan contigo
@@ -65,14 +87,21 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 **Headline:**
 > No hay account manager júnior entre tú y quien decide. Somos dos, directo.
 
-**Fotos:** Juan Camilo tiene asset disponible (headshot, fondo blanco — `Diseño_sin_título.png`). María Paula manda foto real mañana — mientras tanto, usar badge de iniciales (MB) en el lenguaje visual del logo mark (fondo Void, iniciales en Cream o Ember), no la foto del CV ni un ícono genérico. Se reemplaza apenas llegue la foto real.
+**Fotos:** las dos reales — Juan Camilo (`Diseño_sin_título.png`) y María Paula (ya confirmada, ver Nosotros). Ya no hay pendiente de fallback de iniciales, ambas fotos están cargando en producción.
 
 **Cards — nombre y rol:**
 > Juan Camilo Maldonado · Co-founder
 > María Paula Bacca · Co-founder
 
-**Body — bio (primera persona plural, en línea con la voz del sitio):**
-> Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario. Juan Camilo gestionó contenido de marca en los canales corporativos de Samsung Electronics Colombia bajo lineamientos globales, y trabajó procesos de atención al cliente bajo cumplimiento GDPR. María Paula coordinó activaciones de marca y desarrolló contenido y piezas gráficas para campañas en Bavaria (Michelob, Pony Malta, Redd's, Cola & Pola), apoyándose en herramientas de IA para producción de contenido; antes, en La Fábrica de Batidos, participó en producción de contenido y tendencias de marca. Los dos venimos de estrategia y contenido, con texturas distintas: gobierno de marca y datos de un lado, producción creativa con IA del otro.
+**Body — bio (bullets, no párrafo corrido — corrección por auditoría UX: carga cognitiva alta en la versión anterior):**
+> Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario.
+
+**Juan Camilo** — canales corporativos de Samsung Electronics Colombia · atención al cliente bajo cumplimiento GDPR
+
+**María Paula** — campañas para Bavaria (Michelob, Pony Malta, Redd's, Cola & Pola) · producción de contenido con herramientas de IA
+
+> Texturas distintas, mismo trabajo: se suma, no se reparte.
+
 
 **Body — cómo se arma el equipo:**
 > El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.
@@ -135,9 +164,3 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 - Revisar inclusión de Novamaker como prueba más adelante, cuando el proyecto esté más avanzado (decisión actual: no usarlo todavía).
 - Replicar esta misma pasada (solo anti-ai-writing, español neutro sin voseo) en: sistema-wat, servicios, nosotros, manifiesto (ya existe, auditar si sigue vigente), contacto.
 - Página de casos: no construir hasta tener al menos un cierre real que mostrar.
-
----
-
-## Notas de implementación (Code)
-
-**Corrección 2026-07-27:** la sección 4 pasó de una card (Juan Camilo solo) a dos cards de co-fundadores, con bio en primera persona plural. El rol se implementa como **"Co-fundador"/"Co-fundadora" en español**, no "Co-founder" como aparece literal en este documento — decisión ya fijada arriba en "Registro y tono" (español neutro sin mezclar inglés) y confirmada explícitamente para unificar con la página Nosotros, que usa el mismo rol en español.
