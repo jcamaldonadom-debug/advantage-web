@@ -52,6 +52,20 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 
 *Nota: esto reemplaza la lista de "3 dolores" que había propuesto antes — una lista de tres es el tell #1 de copy genérico. La secuencia real (dependencia → agencia opaca → vuelta a cero) sigue siendo la misma que documentaste como el orden en que tu ICP lo procesa mentalmente, pero contada en prosa continua en vez de beats cortos tipo guión — así se lee como copy de página, no como narración en voz alta.*
 
+
+**Diagrama de ciclo cerrado — nuevo, aprobado (feedback: "muy plano, alguien que no quiera leer no capta el punto"):**
+
+El párrafo describe un loop, no una lista: operas solo → contratas agencia → cero trazabilidad → vuelves a operar solo, con menos. Un diagrama circular de 4 nodos con flechas, la última apuntando de vuelta al primero, comunica "estás atrapado en un ciclo" sin que haga falta leer una palabra.
+
+- **Nodos (mismo estilo visual que la constelación del hero — círculos pequeños, líneas finas 1px, Ember/Muted):**
+  1. `operas solo`
+  2. `contratas agencia`
+  3. `cero trazabilidad`
+  4. `vuelves a cero` → flecha de regreso al nodo 1, cerrando el loop
+- **Layout:** dos columnas en desktop (texto a la izquierda, diagrama a la derecha — mismo patrón compositivo que el hero). En mobile, el diagrama va primero, arriba del texto — es lo que ve primero quien no piensa leer los párrafos.
+- **Animación:** los nodos se dibujan en sincronía con el `data-anim="parrafo"` que ya existe — nodos 1-2 aparecen con el primer párrafo, nodos 3-4 y la flecha de cierre con el segundo. No es una animación nueva independiente, está atada al mismo trigger de scroll que ya hay.
+- **Accesibilidad:** `aria-hidden="true"` — la info ya está completa en el texto, el diagrama es refuerzo visual, no contenido adicional.
+
 ---
 
 ### 3. Sistema (WAT)
@@ -129,6 +143,27 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 
 **Body:**
 > No tenemos años de casos para mostrarte todavía, y no te vamos a inventar uno. El primer sistema que audita ADvantage es el nuestro — así se construye esta misma página, con el mismo WAT que te ofrecemos.
+
+
+**Ficha de WAT aplicado a ADvantage — nuevo (mejor prueba: no es "aquí hay links", es "así se ve nuestro propio Research corriendo sobre nosotros"):**
+
+Una card estilo documento real (no una lista de links) mostrando un extracto curado — no el brief completo, lo suficiente para probar que es real sin exponer estrategia interna completa:
+
+```
+[WAT_RESEARCH · ADVANTAGE.SELF]
+
+A quién le hablamos:
+PYMEs establecidas de Bogotá · 5-50 empleados · dueño como decisor directo
+
+Cómo les hablamos:
+Frases cortas, verbos activos, números concretos — nunca "soluciones integrales"
+```
+
+- **Estilo visual:** card con fondo Ink `#111118`, borde `Border #22201A`, eyebrow en JetBrains Mono arriba (mismo lenguaje que el log del hero — "esto es un sistema hablando", no una cita de marketing). Los dos campos ("A quién" / "Cómo") en labels mono + valor en Inter.
+- **El corte, no el texto, comunica "esto es parcial":** el borde inferior de la card se desvanece con un gradiente hacia Void (`mask-image`), como si el documento continuara y esto fuera un extracto — sin necesidad de escribir "esto es solo una parte". Show, don't tell.
+- **Contenido:** ambas líneas son hechos ya aprobados en otros documentos (ICP del proyecto, reglas de voz del manual) — no se inventa nada nuevo acá, solo se visualiza.
+- **Animación:** ScrollReveal fade+rise estándar, sin efectos nuevos.
+- **Ya no queda pendiente la pregunta del link público del Manual de marca — esta solución no la necesita.**
 
 ---
 
