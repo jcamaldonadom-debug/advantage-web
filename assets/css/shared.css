@@ -365,6 +365,32 @@ p strong { color: var(--cream); font-weight: 500; }
 }
 
 /* ============================
+   Hechos de bio — lista escaneable en vez de párrafo corrido.
+   Corrección de auditoría UX: el párrafo corrido tenía carga cognitiva alta y
+   nadie lo leía completo. La usan index.html (Home) y nosotros.html.
+============================ */
+.bio-hechos {
+  list-style: none;
+  max-width: 680px;
+}
+.bio-hechos li {
+  position: relative;
+  padding-left: var(--sp-lg);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.bio-hechos li + li { margin-top: var(--sp-sm); }
+/* Viñeta propia en Ember — el marker por defecto no acepta color de token */
+.bio-hechos li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--ember);
+}
+.bio-hechos li strong { color: var(--cream); font-weight: 600; }
+
+/* ============================
    Cierre — Bloque Ember (fondo sólido), CTA de máximo impacto
 ============================ */
 .cierre {

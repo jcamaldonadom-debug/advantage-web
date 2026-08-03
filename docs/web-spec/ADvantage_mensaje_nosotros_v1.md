@@ -36,18 +36,24 @@ Home ya tiene una versión corta de "quiénes trabajan contigo" (trust-builder d
 
 ### 3. Quiénes dirigen esto — El sistema de equipo
 
-**Body — Juan Camilo (primera persona):**
-> Antes de ADvantage gestioné contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales, y trabajé procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales.
+**Body — Juan Camilo (bullets, no párrafo — corrección por auditoría UX):**
+> Antes de ADvantage:
+- Estrategia y gobierno de marca basado en datos
+- Contenido de marca en los canales corporativos de Samsung Electronics Colombia — Instagram, TikTok, LinkedIn, X y Samsung Members — bajo lineamientos globales
+- Procesos de atención al cliente bajo cumplimiento GDPR, analizando métricas de satisfacción para clientes internacionales
 
-**Body — María Paula (primera persona):**
-> Coordiné activaciones de marca y desarrollé contenido y piezas gráficas para campañas en Bavaria — Michelob, Pony Malta, Redd's, Cola & Pola — apoyándome en herramientas de IA para producción de contenido. Antes, en La Fábrica de Batidos, participé en producción de contenido y tendencias de marca, además de montar la experiencia de marca en la apertura de dos locales.
+**Body — María Paula (bullets):**
+> Antes de ADvantage:
+- Producción creativa y coordinación de activaciones de marca a nivel nacional
+- Campañas para Bavaria — Michelob, Pony Malta, Redd's, Cola & Pola — apoyándose en herramientas de IA para producción de contenido
+- En La Fábrica de Batidos: producción de contenido, tendencias de marca, y montaje de la experiencia de marca en la apertura de dos locales
 
 **Body — cierre conjunto:**
 > Los dos estudiamos Marketing y Negocios Digitales en la Universidad del Rosario. No vendemos años de experiencia — vendemos que el sistema no depende de que uno de los dos tenga un buen día. Trabajamos en paralelo, no divididos por función: los dos hacemos estrategia, los dos hacemos contenido. Juan Camilo trae gobierno de canales corporativos y rigor analítico de servicio al cliente; María Paula trae producción creativa de contenido con IA. Se suma, no se reparte.
 
 > El equipo se arma después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa.
 
-**Fotos/avatares:** Juan Camilo usa el asset real (`Diseño_sin_título.png`). María Paula manda foto real mañana — mientras tanto, badge de iniciales (MB) en el mismo lenguaje visual del logo mark, no la foto del CV ni un ícono genérico. Se reemplaza apenas llegue la foto real.
+**Fotos/avatares:** las dos reales y confirmadas en producción — Juan Camilo (`Diseño_sin_título.png`) y María Paula (foto propia, ya cargada). Ya no hay pendiente de fallback.
 
 ---
 
@@ -120,13 +126,3 @@ Concepto: no es "quién trae qué experiencia" (eso ya lo cuentan las bios de ar
 - Sección 5 no repite el manifiesto completo, solo 3 principios + link — evita que la página se sienta redundante con /manifiesto.
 - Motion del resto de la página: mismas reglas de Brand Tokens.
 - Si otras secciones del sitio también tienen espacios en blanco raros, revisar que estén usando los tokens de spacing exactos del manual y no paddings por defecto del framework — mismo problema de raíz que causó las dos rondas anteriores.
-
----
-
-## Notas de implementación (Code)
-
-**Auditoría de spacing (2026-07-15):** verificada con grep sobre las 10 páginas. Los únicos valores de spacing fuera de token en todo el sitio eran los 4 del Venn (`margin-top: -210px`, `padding-right/left: 190px`, `margin: -68px`) más su `height: 480px` fijo — eso era el aire sobrante. El resto del sitio ya usa `var(--sp-*)`; `shared.css` solo tiene paddings internos de botón/pill/nav, que son medidas de componente, no de layout. Al reemplazar el diagrama el problema queda resuelto y no hay nada más que corregir.
-
-**Sobre "5CA" en el tooltip de GDPR:** el ejemplo del spec lo nombra, pero el spec del Home fijó explícitamente que no se menciona 5CA en el sitio ("describir por función, no por título"). Como el texto venía rotulado "Ejemplos" y la regla del Home es una decisión tomada, se omite el nombre de la empresa. Si se decide nombrarlo, hay que revisar también el Home para que el sitio no se contradiga.
-
-**Corrección 2026-07-27:** el diagrama de tres columnas (Juan Camilo / Compartido / María Paula + fila de Facilitadores) quedó descartado — Juank pidió un concepto distinto que muestre la estructura de organización por cliente (cliente ↔ estrategas ↔ facilitadores), no el "currículum" de cada fundador. Reemplazado por el diagrama de 3 niveles verticales de esta versión. Además: se eliminó la duplicación entre las cards `.fundadores` (foto grande + bio) y el diagrama — las bios quedan como párrafos de texto, sin card visual repetida; el párrafo de facilitadores se recortó porque el diagrama ya muestra los perfiles; bio de María Paula actualizada a tiempo pasado y sin el ángulo comercial de Batidos (pidió no enfatizarlo); roles unificados a español (`Co-fundador`/`Co-fundadora`) para que coincidan con el Home.

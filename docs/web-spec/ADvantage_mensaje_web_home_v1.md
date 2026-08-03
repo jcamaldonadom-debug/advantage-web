@@ -36,6 +36,12 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 **CTA primario:** Agenda tu diagnóstico
 **CTA secundario:** Lee el manifiesto →
 
+**Actualización — más presencia visual (feedback: "el hero no capta la atención de primerazo"):**
+1. **Log de sistema en JetBrains Mono**, debajo del badge "wat_system · activo", estilo consola: `> 9 módulos · cargados` / `> wat_system: activo`. Funcional, no decorativo — demuestra el sistema en vez de solo nombrarlo.
+2. **Contador "9 módulos" (CountUp) sube al hero** — hoy vive más abajo en la página; en el hero da un hook cuantificado inmediato.
+3. **Glow más intenso** — está al 16% de opacidad, casi invisible contra Void `#09090F`. Subir intensidad o agregar una segunda capa, sin volverse decorativo.
+4. **Punto Ember del logo, parpadeo sutil (CSS, todas las páginas, no solo el hero)** — el manual ya define el punto como "indica el sistema activo, como un cursor... running". Hacerlo parpadear es coherente con su propio significado, no una animación nueva inventada.
+
 ---
 
 ### 2. Problema (narrativo — prosa web, no listado de dolores)
@@ -45,6 +51,20 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 > Pero la mayoría te entrega reportes que no explican nada, resultados que no puedes rastrear hasta una decisión concreta, y una factura mensual que pagas por fe — así que terminas haciéndolo todo de nuevo tú mismo, con menos presupuesto y menos confianza en la próxima agencia que te llame.
 
 *Nota: esto reemplaza la lista de "3 dolores" que había propuesto antes — una lista de tres es el tell #1 de copy genérico. La secuencia real (dependencia → agencia opaca → vuelta a cero) sigue siendo la misma que documentaste como el orden en que tu ICP lo procesa mentalmente, pero contada en prosa continua en vez de beats cortos tipo guión — así se lee como copy de página, no como narración en voz alta.*
+
+
+**Diagrama de ciclo cerrado — nuevo, aprobado (feedback: "muy plano, alguien que no quiera leer no capta el punto"):**
+
+El párrafo describe un loop, no una lista: operas solo → contratas agencia → cero trazabilidad → vuelves a operar solo, con menos. Un diagrama circular de 4 nodos con flechas, la última apuntando de vuelta al primero, comunica "estás atrapado en un ciclo" sin que haga falta leer una palabra.
+
+- **Nodos (mismo estilo visual que la constelación del hero — círculos pequeños, líneas finas 1px, Ember/Muted):**
+  1. `operas solo`
+  2. `contratas agencia`
+  3. `cero trazabilidad`
+  4. `vuelves a cero` → flecha de regreso al nodo 1, cerrando el loop
+- **Layout:** dos columnas en desktop (texto a la izquierda, diagrama a la derecha — mismo patrón compositivo que el hero). En mobile, el diagrama va primero, arriba del texto — es lo que ve primero quien no piensa leer los párrafos.
+- **Animación:** los nodos se dibujan en sincronía con el `data-anim="parrafo"` que ya existe — nodos 1-2 aparecen con el primer párrafo, nodos 3-4 y la flecha de cierre con el segundo. No es una animación nueva independiente, está atada al mismo trigger de scroll que ya hay.
+- **Accesibilidad:** `aria-hidden="true"` — la info ya está completa en el texto, el diagrama es refuerzo visual, no contenido adicional.
 
 ---
 
@@ -58,6 +78,22 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 
 **Stat destacado:** 9 módulos *(animado, ver mapeo de motion)*
 
+**Grid de 9 módulos — con línea de beneficio (corrección por auditoría UX: jerga sin traducir genera carga cognitiva). Nombres de módulo se mantienen sin cambio — ya están en el hero y en Sistema WAT, renombrarlos aquí rompería la consistencia del sitio:**
+
+| Módulo | Línea de beneficio |
+|---|---|
+| W01 · Onboarding | Entendemos tu negocio antes de proponer nada. Cero improvisación. |
+| W02 · Research | Mapeamos competencia y clientes. Decisiones basadas en datos, no en corazonadas. |
+| W03 · Contenido | Mensajes que venden, sin frases corporativas genéricas. |
+| W04 · SEO | Que te encuentren en Google justo cuando tu cliente ya está listo para comprar. |
+| W05 · Pauta | Anuncios estructurados para compradores reales, no para likes. |
+| W06 · CRO | Arreglamos tu web para que las visitas no se vayan sin comprar. |
+| W07 · Growth | Lanzamiento, precios, referidos, retención — crecimiento con plan, no solo con más pauta. |
+| W08 · Analítica | Rastreamos qué acción trajo a qué cliente — no solo cuántas visitas tuviste. |
+| W09 · Ventas | Pitch decks, propuestas y scripts de ventas — listos para que tu equipo los use, no plantillas genéricas. |
+
+*Nota sobre las correcciones a Growth y Ventas: la auditoría externa (Gemini, sobre grupo focal) proponía "identificamos qué canal deja plata y le pisamos el acelerador" para Growth y "conectamos el marketing con tu equipo comercial" para Ventas — ninguna de las dos coincide con lo que se extrajo como hecho real de los workflows (ver `ADvantage_mensaje_sistema_wat_v1.md`). Growth cubre lanzamiento/pricing/referidos/retención, no optimización de canales pagos — eso es Pauta. Ventas produce materiales de habilitación comercial, no es una función de enlace entre departamentos. Se corrigieron para que el beneficio no prometa algo que el módulo no hace.*
+
 ---
 
 ### 4. Quiénes trabajan contigo
@@ -65,14 +101,21 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 **Headline:**
 > No hay account manager júnior entre tú y quien decide. Somos dos, directo.
 
-**Fotos:** Juan Camilo tiene asset disponible (headshot, fondo blanco — `Diseño_sin_título.png`). María Paula manda foto real mañana — mientras tanto, usar badge de iniciales (MB) en el lenguaje visual del logo mark (fondo Void, iniciales en Cream o Ember), no la foto del CV ni un ícono genérico. Se reemplaza apenas llegue la foto real.
+**Fotos:** las dos reales — Juan Camilo (`Diseño_sin_título.png`) y María Paula (ya confirmada, ver Nosotros). Ya no hay pendiente de fallback de iniciales, ambas fotos están cargando en producción.
 
 **Cards — nombre y rol:**
 > Juan Camilo Maldonado · Co-founder
 > María Paula Bacca · Co-founder
 
-**Body — bio (primera persona plural, en línea con la voz del sitio):**
-> Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario. Juan Camilo gestionó contenido de marca en los canales corporativos de Samsung Electronics Colombia bajo lineamientos globales, y trabajó procesos de atención al cliente bajo cumplimiento GDPR. María Paula coordinó activaciones de marca y desarrolló contenido y piezas gráficas para campañas en Bavaria (Michelob, Pony Malta, Redd's, Cola & Pola), apoyándose en herramientas de IA para producción de contenido; antes, en La Fábrica de Batidos, participó en producción de contenido y tendencias de marca. Los dos venimos de estrategia y contenido, con texturas distintas: gobierno de marca y datos de un lado, producción creativa con IA del otro.
+**Body — bio (bullets, no párrafo corrido — corrección por auditoría UX: carga cognitiva alta en la versión anterior):**
+> Dirigimos cada cuenta juntos: la estrategia, el contenido y la relación con el cliente pasan por nosotros, no por un intermediario.
+
+**Juan Camilo** — canales corporativos de Samsung Electronics Colombia · atención al cliente bajo cumplimiento GDPR
+
+**María Paula** — campañas para Bavaria (Michelob, Pony Malta, Redd's, Cola & Pola) · producción de contenido con herramientas de IA
+
+> Texturas distintas, mismo trabajo: se suma, no se reparte.
+
 
 **Body — cómo se arma el equipo:**
 > El resto del equipo — filmmaker, community manager, diseñador — se asigna después del diagnóstico, no antes. Nadie promete "nuestro mejor editor" en la primera llamada, porque en la primera llamada todavía no se sabe si el proyecto necesita un editor o necesita otra cosa. Primero se entiende qué requiere el negocio. Después se arma el equipo que ejecuta.
@@ -100,6 +143,27 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 
 **Body:**
 > No tenemos años de casos para mostrarte todavía, y no te vamos a inventar uno. El primer sistema que audita ADvantage es el nuestro — así se construye esta misma página, con el mismo WAT que te ofrecemos.
+
+
+**Ficha de WAT aplicado a ADvantage — nuevo (mejor prueba: no es "aquí hay links", es "así se ve nuestro propio Research corriendo sobre nosotros"):**
+
+Una card estilo documento real (no una lista de links) mostrando un extracto curado — no el brief completo, lo suficiente para probar que es real sin exponer estrategia interna completa:
+
+```
+[WAT_RESEARCH · ADVANTAGE.SELF]
+
+A quién le hablamos:
+PYMEs establecidas de Bogotá · 5-50 empleados · dueño como decisor directo
+
+Cómo les hablamos:
+Frases cortas, verbos activos, números concretos — nunca "soluciones integrales"
+```
+
+- **Estilo visual:** card con fondo Ink `#111118`, borde `Border #22201A`, eyebrow en JetBrains Mono arriba (mismo lenguaje que el log del hero — "esto es un sistema hablando", no una cita de marketing). Los dos campos ("A quién" / "Cómo") en labels mono + valor en Inter.
+- **El corte, no el texto, comunica "esto es parcial":** el borde inferior de la card se desvanece con un gradiente hacia Void (`mask-image`), como si el documento continuara y esto fuera un extracto — sin necesidad de escribir "esto es solo una parte". Show, don't tell.
+- **Contenido:** ambas líneas son hechos ya aprobados en otros documentos (ICP del proyecto, reglas de voz del manual) — no se inventa nada nuevo acá, solo se visualiza.
+- **Animación:** ScrollReveal fade+rise estándar, sin efectos nuevos.
+- **Ya no queda pendiente la pregunta del link público del Manual de marca — esta solución no la necesita.**
 
 ---
 
@@ -135,9 +199,3 @@ Filtrado por anti-ai-writing. Listo para Cowork/Claude Code.
 - Revisar inclusión de Novamaker como prueba más adelante, cuando el proyecto esté más avanzado (decisión actual: no usarlo todavía).
 - Replicar esta misma pasada (solo anti-ai-writing, español neutro sin voseo) en: sistema-wat, servicios, nosotros, manifiesto (ya existe, auditar si sigue vigente), contacto.
 - Página de casos: no construir hasta tener al menos un cierre real que mostrar.
-
----
-
-## Notas de implementación (Code)
-
-**Corrección 2026-07-27:** la sección 4 pasó de una card (Juan Camilo solo) a dos cards de co-fundadores, con bio en primera persona plural. El rol se implementa como **"Co-fundador"/"Co-fundadora" en español**, no "Co-founder" como aparece literal en este documento — decisión ya fijada arriba en "Registro y tono" (español neutro sin mezclar inglés) y confirmada explícitamente para unificar con la página Nosotros, que usa el mismo rol en español.

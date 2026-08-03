@@ -21,6 +21,31 @@
     });
   }
 
+  // Dependencia real entre módulos WAT: al pasar el cursor o dar foco a una
+  // card que habilita otras, esas se resaltan. Va antes del early-return de
+  // motion porque es información, no animación — solo cambia color, sin
+  // movimiento, así que funciona igual con prefers-reduced-motion.
+  var grid = document.getElementById('modulosGrid');
+  if (grid) {
+    var cards = grid.querySelectorAll('.modulo-card[data-habilita]');
+    Array.prototype.forEach.call(cards, function (card) {
+      var ids = card.getAttribute('data-habilita').split(' ');
+      var dependientes = ids.map(function (id) {
+        return grid.querySelector('.modulo-card[data-modulo="' + id + '"]');
+      }).filter(Boolean);
+
+      var marcar = function (on) {
+        dependientes.forEach(function (d) { d.classList.toggle('es-dependiente', on); });
+      };
+      card.addEventListener('mouseenter', function () { marcar(true); });
+      card.addEventListener('mouseleave', function () { marcar(false); });
+      // Foco de teclado: la card necesita ser alcanzable para que esto sirva
+      card.setAttribute('tabindex', '0');
+      card.addEventListener('focus', function () { marcar(true); });
+      card.addEventListener('blur', function () { marcar(false); });
+    });
+  }
+
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced || typeof gsap === 'undefined') return; // contenido queda visible sin animar
 
