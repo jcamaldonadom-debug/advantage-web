@@ -486,7 +486,7 @@
     <div class="problema-cols">
       <div class="problema-texto">
         <p id="problemaP1" data-anim="parrafo">Llevas años siendo el motor del negocio: las decisiones pasan por ti, los clientes te buscan a ti, y el crecimiento se detiene cada vez que no estás. Contratar una agencia debería resolver eso.</p>
-        <p id="problemaP2" data-anim="parrafo">Pero la mayoría te entrega reportes que no explican nada, resultados que no puedes rastrear hasta una decisión concreta, y una factura mensual que pagas por fe — así que terminas haciéndolo todo de nuevo tú mismo, con menos presupuesto y menos confianza en la próxima agencia que te llame.</p>
+        <p data-anim="parrafo">Pero la mayoría te entrega reportes que no explican nada, resultados que no puedes rastrear hasta una decisión concreta, y una factura mensual que pagas por fe — así que terminas haciéndolo todo de nuevo tú mismo, con menos presupuesto y menos confianza en la próxima agencia que te llame.</p>
       </div>
       <!-- Diagrama de ciclo cerrado. aria-hidden: los dos párrafos de al lado
            ya dicen todo esto — el diagrama es refuerzo visual, no contenido
@@ -716,9 +716,13 @@
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/site.js"></script>
 
-<!-- Diagrama de ciclo cerrado: los nodos entran atados a los mismos párrafos
-     que ya anima site.js, no con un trigger propio. Nodos 1-2 con el primer
-     párrafo; nodos 3-4 y la flecha de cierre con el segundo. -->
+<!-- Diagrama de ciclo cerrado: un solo trigger, dos tiempos. El grupo 2 salía
+     antes de su propio ScrollTrigger sobre el segundo párrafo, pero los dos
+     párrafos están a ~120px, así que ambos triggers disparaban casi juntos y
+     la secuencia no se percibía. Ahora el grupo 2 sale del mismo disparo con
+     un delay fijo: el ritmo lo marca el tiempo, no la distancia del layout
+     (que además cambia con el ancho de pantalla y con cualquier edición del
+     copy). -->
 <script>
 (function () {
   var ciclo = document.getElementById('cicloProblema');
@@ -727,19 +731,18 @@
     1: ciclo.querySelector('[data-ciclo="1"]'),
     2: ciclo.querySelector('[data-ciclo="2"]')
   };
+  var parrafo1 = document.getElementById('problemaP1');
+  if (!parrafo1) return;
   // Sin GSAP o con reduced-motion el diagrama queda visible, sin animar
   if (!window.gsap || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   gsap.set([grupos[1], grupos[2]], { opacity: 0 });
-  [['problemaP1', 1], ['problemaP2', 2]].forEach(function (par) {
-    var parrafo = document.getElementById(par[0]);
-    if (!parrafo) return;
-    ScrollTrigger.create({
-      trigger: parrafo, start: 'top 80%', once: true,
-      onEnter: function () {
-        gsap.to(grupos[par[1]], { opacity: 1, duration: 0.7, ease: 'power2.out' });
-      }
-    });
+  ScrollTrigger.create({
+    trigger: parrafo1, start: 'top 80%', once: true,
+    onEnter: function () {
+      gsap.to(grupos[1], { opacity: 1, duration: 0.7, ease: 'power2.out' });
+      gsap.to(grupos[2], { opacity: 1, duration: 0.7, ease: 'power2.out', delay: 0.35 });
+    }
   });
 })();
 </script>
