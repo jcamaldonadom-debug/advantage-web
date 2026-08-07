@@ -427,6 +427,50 @@ footer a { color: var(--dim); text-decoration: none; transition: color 0.2s ease
 footer a:hover { color: var(--muted); }
 
 /* ============================
+   Banner de consentimiento de cookies — lo inyecta assets/js/consent.js.
+   Ancla abajo y no tapa el contenido: es una barra, no un modal que bloquee.
+============================ */
+.cookie-banner {
+  position: fixed;
+  left: var(--sp-md); right: var(--sp-md); bottom: var(--sp-md);
+  z-index: 100;
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--ink);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--ember);
+  border-radius: 12px;
+  padding: var(--sp-lg);
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--sp-md) var(--sp-lg);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+.cookie-texto {
+  flex: 1 1 320px;
+  font-size: 14px; line-height: 1.6;
+  color: var(--muted);
+  max-width: none;
+}
+.cookie-texto a { color: var(--cream); text-decoration: underline; }
+.cookie-texto a:hover { color: var(--ember-hover); }
+.cookie-acciones { display: flex; align-items: center; gap: var(--sp-md); flex-wrap: wrap; }
+.cookie-acciones .btn-primary { padding: var(--sp-sm) var(--sp-lg); font-size: 14px; }
+/* En móvil el banner es una barra fija abajo y el CTA del hero cae justo ahí,
+   así que cada pixel de alto se lo come al botón principal. Se compacta: texto
+   más chico, padding ajustado y los dos botones en la misma fila. */
+@media (max-width: 560px) {
+  .cookie-banner {
+    left: var(--sp-sm); right: var(--sp-sm); bottom: var(--sp-sm);
+    padding: var(--sp-md);
+    gap: var(--sp-sm) var(--sp-md);
+  }
+  .cookie-texto { flex: 1 1 100%; font-size: 13px; line-height: 1.5; }
+  .cookie-acciones { width: 100%; }
+  .cookie-acciones .btn-primary { flex: 1; justify-content: center; }
+  .cookie-acciones .btn-ghost { flex: 0 0 auto; }
+}
+
+/* ============================
    Motion — respeto a prefers-reduced-motion
 ============================ */
 @media (prefers-reduced-motion: reduce) {
