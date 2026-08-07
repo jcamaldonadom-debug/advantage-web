@@ -90,9 +90,6 @@ correr el `sed` con el dominio definitivo.
 Cosas que quedan fuera a propósito, para que no te tomen por sorpresa:
 
 - **Formularios**: no hay ninguno. Todo el contacto sale por WhatsApp o correo.
-- **Aviso de privacidad / política de cookies**: no existen, y GA4 sí instala
-  cookies. Con la Ley 1581 de 2012 vigente en Colombia, conviene agregar una
-  página de política y —según el criterio que se adopte— un banner de consentimiento.
 - **Sitemap / robots.txt**: no existen. Google igual indexa un sitio de 10
   páginas bien enlazadas, pero si quieres control fino toca agregarlos.
 - **Página de casos**: no se construye hasta tener un cierre real que mostrar
@@ -100,7 +97,7 @@ Cosas que quedan fuera a propósito, para que no te tomen por sorpresa:
 
 ---
 
-## Analítica — Google Analytics 4
+## Analítica — Google Analytics 4 y consentimiento
 
 El sitio carga GA4 (`G-459HMES21Q`) en las 11 páginas, con el snippet oficial
 justo después de `<head>`.
@@ -119,10 +116,27 @@ sale nada raro a la vista, y no llega un solo dato a GA. Al revés también: si
 algún día se quita GA del HTML, quitar estos orígenes de `_headers` para no
 dejar la política más abierta de lo necesario.
 
-**Pendiente legal:** GA4 instala cookies. Colombia tiene la Ley 1581 de 2012 de
-protección de datos, y hoy el sitio no tiene aviso de privacidad ni página de
-política. No bloquea el deploy, pero conviene resolverlo — ver "Qué NO hace este
-deploy".
+**Consentimiento:** `assets/js/consent.js` bloquea `gtag.js` hasta que la persona
+acepta. Sin decisión o con rechazo no se descarga el script, no se instala cookie
+y no sale un dato. La decisión se guarda en `localStorage` y se puede revocar
+desde `privacidad.html`.
+
+Es más estricto de lo que exige la ley colombiana: **Colombia no tiene una norma
+de banner de cookies** como el ePrivacy europeo. Lo que sí obliga la Ley 1581 de
+2012 es publicar la política de tratamiento, que es `privacidad.html`.
+
+**Responsable: persona natural.** No hay sociedad constituida, así que el
+responsable del tratamiento es Juan Camilo Maldonado como persona natural. Eso
+tiene una consecuencia práctica: **el registro en el RNBD no aplica** — esa
+obligación es de sociedades y entidades sin ánimo de lucro por encima del umbral
+de activos, no de personas naturales. Si en algún momento se constituye la
+empresa, hay que revisar las dos cosas: actualizar el responsable en la política
+y evaluar si toca registrar la base de datos.
+
+**Antes de publicar** falta reemplazar dos marcadores en `privacidad.html`
+—número de cédula y fecha de vigencia— y que un abogado revise el texto. Los
+marcadores salen resaltados en naranja a propósito, para que no se publiquen con
+los corchetes puestos.
 
 ---
 
