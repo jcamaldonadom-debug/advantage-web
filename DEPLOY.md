@@ -58,7 +58,7 @@ previews por rama. Puedes apuntar el sitio a la rama directamente y cambiarlo a
 
 ## Paso 4 — Verificar después del primer deploy
 
-En orden, y no des el sitio por publicado hasta que los 6 pasen:
+En orden, y no des el sitio por publicado hasta que los 7 pasen:
 
 | # | Qué revisar | Cómo |
 |---|---|---|
@@ -68,6 +68,7 @@ En orden, y no des el sitio por publicado hasta que los 6 pasen:
 | 4 | Preview al compartir | Pegar el link en un chat de WhatsApp contigo mismo → debe salir la imagen Ember con "Sistema y alma." |
 | 5 | 404 propia | Abrir `https://advantagecol.netlify.app/cualquier-cosa` → la página de error del sitio, no la de Netlify |
 | 6 | CTA de WhatsApp | Tocar "Agenda tu diagnóstico" desde el celular → abre WhatsApp al +57 315 597 1878 con el mensaje pre-cargado |
+| 7 | Google Analytics recibiendo | Abrir el sitio y mirar **GA4 → Informes → Tiempo real**: debe aparecer tu visita en menos de un minuto. Si no llega, abrir la consola y buscar errores de `Content-Security-Policy` — es la causa más probable |
 
 El paso 3 es el que más importa: `docs/web-spec/` contiene decisiones de pricing,
 notas sobre clientes que declinaron y la estructura de equity de Novamaker. En
@@ -88,14 +89,40 @@ correr el `sed` con el dominio definitivo.
 
 Cosas que quedan fuera a propósito, para que no te tomen por sorpresa:
 
-- **Analítica**: el sitio no carga GA4 ni ningún tracker. Si lo agregas, hay que
-  sumar el dominio del script a `script-src` y `connect-src` en `_headers`, o la
-  CSP lo bloquea en silencio.
 - **Formularios**: no hay ninguno. Todo el contacto sale por WhatsApp o correo.
+- **Aviso de privacidad / política de cookies**: no existen, y GA4 sí instala
+  cookies. Con la Ley 1581 de 2012 vigente en Colombia, conviene agregar una
+  página de política y —según el criterio que se adopte— un banner de consentimiento.
 - **Sitemap / robots.txt**: no existen. Google igual indexa un sitio de 10
   páginas bien enlazadas, pero si quieres control fino toca agregarlos.
 - **Página de casos**: no se construye hasta tener un cierre real que mostrar
   (decisión fijada en el spec del Home).
+
+---
+
+## Analítica — Google Analytics 4
+
+El sitio carga GA4 (`G-459HMES21Q`) en las 11 páginas, con el snippet oficial
+justo después de `<head>`.
+
+**La CSP tiene que acompañarlo.** `_headers` lista tres orígenes de Google que
+existen solo por GA:
+
+| Directiva | Origen | Para qué |
+|---|---|---|
+| `script-src` | `www.googletagmanager.com` | cargar `gtag.js` |
+| `connect-src` | `*.google-analytics.com`, `*.analytics.google.com` | enviar los eventos |
+| `img-src` | `*.google-analytics.com`, `*.googletagmanager.com` | pixel de respaldo cuando el navegador bloquea `fetch` |
+
+Si se quitan, **la CSP bloquea el tag en silencio**: la página carga normal, no
+sale nada raro a la vista, y no llega un solo dato a GA. Al revés también: si
+algún día se quita GA del HTML, quitar estos orígenes de `_headers` para no
+dejar la política más abierta de lo necesario.
+
+**Pendiente legal:** GA4 instala cookies. Colombia tiene la Ley 1581 de 2012 de
+protección de datos, y hoy el sitio no tiene aviso de privacidad ni página de
+política. No bloquea el deploy, pero conviene resolverlo — ver "Qué NO hace este
+deploy".
 
 ---
 

@@ -1,9 +1,16 @@
 # Headers de seguridad — ADvantage_SECURITY.md
 # Formato Netlify (_headers). Si el hosting es GitHub Pages este archivo se ignora
 # y los headers deben configurarse en la plataforma que sí lo soporte.
+#
+# Los orígenes de Google en la CSP son para Google Analytics (GA4, G-459HMES21Q):
+#   script-src   googletagmanager.com → carga gtag.js
+#   connect-src  google-analytics.com, analytics.google.com → envía los eventos
+#   img-src      los pixeles de respaldo cuando el navegador bloquea fetch
+# Sin estas tres, la CSP bloquea el tag EN SILENCIO: la página carga normal y
+# no llega un solo dato. Si algún día se quita GA, quitar también estos orígenes.
 
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
